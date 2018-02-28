@@ -39,7 +39,7 @@ int main (int argc, char ** argv){
 	AfficherMap(MainMap,&entered_size);
 	printf("Press any key to continue...\n");
 	scanf("%d",&v);
-	mouv(MainMap,&entered_size);
+	mouv_avancer(MainMap,&entered_size);
 	}
 
               return 0;

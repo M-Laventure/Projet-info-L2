@@ -6,7 +6,8 @@ int  unitTosize(int *);//fonction redéfinie la taille de la map
 void init_obstacle(int **, int *);
 void placement_auto1(int **, int *, int * , char );
 int placement_manuel(int **, int *, int, int);
-void mouv(int **, int *);
+void mouv_avancer(int **, int *);
+void mouv_reculer(int **, int *)
 
 /********************Créer MAP*****************************************************/
 
