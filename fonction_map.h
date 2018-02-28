@@ -233,8 +233,8 @@ extern int placement_manuel(int **tableau, int *taille_map, int archer_total, in
 
 
 
-
-extern void mouv(int **Map, int *size){
+/*******Gestion des mouvements automatiques: version test******************************/
+extern void mouv_avancer(int **Map, int *size){
 
 int i, j;
 int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
@@ -244,6 +244,26 @@ int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des n
 			if((Map[i][j]!=0)&&(Map[i][j]!=1)){
 				if (Map[i][j-1]==0){
 					Map[i][j-1]=Map[i][j];
+					Map[i][j]=0;
+						
+				}
+			}
+			
+	}
+		
+
+}}
+
+extern void mouv_reculer(int **Map, int *size){
+
+int i, j;
+int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+	
+	for (i=0;i<taille_matrice;i++){
+		for(j=0;j<taille_matrice;j++){
+			if((Map[i][j]!=0)&&(Map[i][j]!=1)){
+				if (Map[i][j+1]==0){
+					Map[i][j+1]=Map[i][j];
 					Map[i][j]=0;
 						
 				}
