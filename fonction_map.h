@@ -1,4 +1,3 @@
-
 /**Prototype à mettre dans un fichier.h**/
 int** Map_Maker1(int * ); //fonction qui initialise la carte
 void AfficherMap(int **, int * );//fonction qui affiche la carte
@@ -173,7 +172,7 @@ extern int placement_manuel(int **tableau, int *taille_map, int archer_total, in
 	int soldat_pose=0;
 	int archer_pose=0;
 	int type_unite=0;	
-	/* a faire : limite coordxy(limite carte et superposable),ajouter coter*/
+		
 	while(i<unite_total){/* Tant que nb d'unités déployable pas atteints */
 		printf("Il vous reste %i archer(s) et %i soldat(s) a placer \n",(archer_total-archer_pose),(soldat_total-soldat_pose));
 		printf("Donnez le type de l'unité que vous voulez déployer ,2 pour archer,3 pour soldat \n");
@@ -273,4 +272,5 @@ int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des n
 	}
 		
 
-}}
+}
+}
