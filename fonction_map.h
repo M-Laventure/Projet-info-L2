@@ -10,7 +10,7 @@ void mouv_reculer(int **, int *)
 
 /********************Créer MAP*****************************************************/
 
-extern int** Map_Maker1(int * size) {//reçoit un pointeur sur size pour ne rien perdre.
+extern int** Map_Maker1(int * size) {//reçoit un pointeur sur size pour ne rien perdre
 
  int **Map;
  int i,j;
