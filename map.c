@@ -5,9 +5,7 @@
 #include <string.h>
 
 #include "fonction_map.h"
-
-
-
+#include "personnages.h"
 
 
 int main (int argc, char ** argv){
