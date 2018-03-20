@@ -8,7 +8,7 @@ Un Tactics Arena est un jeu de stratégie où deux joueurs s'affrontent au tour 
 Chaque joueur a en début de partie plusieurs unités différentes à sa disposition pour former une équipe. Chaque type d'unité dispose de caractéristiques différentes ( déplacement, attaque, défense etc..).  
 Le but du jeu est d'utiliser à bon escient les spécificités de ses unités afin d'éliminer toutes les unités adverses. </p>
 
-# **Index**
+# *Index*
 
 
 
