@@ -22,15 +22,29 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
  ### *Règles du jeu*
   
   1. Constitution de l'équipe
+    Le jeu débute par une sélection et un placement sur le plateau simultané des unités de chaque joueur.
+    Les joueurs sélectionnent un crédit limite qui déterminera la constitution de leur équipe : Chaque type d'unité coûte un   certain crédit et la seule restriction pour le joueur est de ne pas former une équipe dépassant le crédit maximum définit au préalable.
+    La liste des personnages, leur identifiant et leur coût en crédit est affiché à l'écran avant chaque composition d'équipe d'un joueur. (*voir tableau statistiques*)
   2. Déroulement du tour
+    Le joueur 1 commence à jouer, alternativement le joueur 2. 
+    L'ordre de jeu des unités est définit selon l'ordre de déploiement de celles-ci : Ordre de jeu 
+     -Tour 1. Unité N°1 joueur1
+     -Tour 2. Unité N°1 joueur2
+     -Tour 3 Unité N°2 joueur1
+     -Tour 4 Unité N°2 joueur2
+     etc..  
+     Pendant un tour, le joueur dispose d'un temps limité ( 1 minute) pour effectuer un déplacement et/ou une attaque contre une unité adverse ou pas. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.
+     Toute déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.
+     
+      
   3. Fin de partie
+  
   4. Caractéristiques des unités 
   
   
   
   
- Le jeu débute par une sélection et un placement sur le plateau simultané d'une unité par chaque joueur alternativement afin de ne pas donner l'avantage à un des joueurs du placement et de la constition d'une équipe en fonction de l'équipe adverse.
- L'ordre de jeu est constitué parallèlement 
+ 
   
  
  
