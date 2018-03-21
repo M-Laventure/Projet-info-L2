@@ -6,7 +6,11 @@ int  unitTosize(int *);//fonction redéfinie la taille de la map
 void init_obstacle(int **, int *);
 void placement_auto1(int **, int *, int * , char );
 int placement_manuel(int **, int *, int, int);
-extern unite_s * init_tab();
+void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
+int verif_credit(int * credit, int credit_unite);
+unite_s * init_tab();
+unite_s saisie_unite(unite_s * tab);
+void add_tab_joueur(unite_s *tab_joueur,unite_s unite_courante, int nb_unite);
 /*void mouv_avancer(int **, int *);
 void mouv_reculer(int **, int *);*/
 
@@ -111,43 +115,49 @@ extern void init_obstacle(int **tableau, int *taille_map){
 
 
 
-extern void  compo_unit(int **Map, int *credit, int joueur,unite_s * tab){
-	unite_s tab_ref = (*tab);
+extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
 	int num_unite;
-	unite_s unite_courant
-	printf("composition de l'équipe du joueur %i : %i credits total", joueur,credit);
-	for(int i=0; i<8;i++){
-		printf("Entrez %i pour deployer %s \n",i,tab_ref.nom);
-	
-	while (credit>5){
-		unite_courant = saisir_unite();
-		if (verif_credit(*credit,unite_courant.stats.credit){
-			add_tab_joueur(.....,unite);
+	int nb_unite = 0;
+	unite_s unite_courante;
+	printf("composition de l'équipe du joueur %i : %i credits total \n", joueur,(*credit));
+	for(int i=0; i<9;i++){
+		printf("Entrez %i pour deployer %s \n",i,tab_ref[i].nom);
+	}
+	while ((*credit)>5){
+		unite_courante = saisie_unite(tab_ref);
+		if (verif_credit(credit,unite_courante.stats.credit)){
+			nb_unite ++;
+			add_tab_joueur(tabjoueur,unite_courante,nb_unite);
 		}
-		else
+		else{}
 			
 	}
 }
 
-bool verif_credit(int * credit, int credit_unite){
-	if (*credit>=credit_unite){
+extern int verif_credit(int * credit, int credit_unite){
+	if ((*credit)>=credit_unite){
 		*credit= *credit - credit_unite;
-		printf("%i crédits restants", credit);
+		printf("%i crédits restants \n", (*credit));
+		return 1;
 	}
-	else
-	    {
+
+	else{
 		printf(" crédits insuffisants, veuillez choisir un autre type d'unité \n");
-		;
+		return 0;
+	}
+		
 }
 
-extern unite_s saisie_unites(unite_s * tab){
+extern unite_s saisie_unite(unite_s *tab){
 	int id_unite;
 	printf("Selectionnez une unité à déployer \n");
 	scanf("%i",&id_unite);
 	return tab[id_unite];
 }
 
-extern void add_tab_joueur(){
+extern void add_tab_joueur(unite_s *tab_joueur,unite_s *unite_courante, int nb_unite){
+	/*tab_joueur[nb_unite] = unite_courante;*/
+	printf("%s", unite_courante.nom);
 }
 
 
