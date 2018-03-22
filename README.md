@@ -45,7 +45,12 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
    Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte ainsi la partie et celle-ci prend fin.
   
-  4. Caractéristiques des unités  
+  4. Tableau  des caractéristiques des personnages
+  
+   
+  |Personnage/Caractéristiques   | Titre 2 | Titre 3 |
+  |:---------|:--------|:--------|
+  | info 1   | info 2  | info 3  | 
   
   ### *Instructions d'utilsation*  
   
