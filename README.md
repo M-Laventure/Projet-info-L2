@@ -34,10 +34,18 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
      -Tour 4 Unité N°2 joueur2
      etc..  
      Pendant un tour, le joueur dispose d'un temps limité ( 1 minute) pour effectuer un déplacement et/ou une attaque contre une unité adverse ou pas. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.
-     Toute déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.
+     Tout déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.
+     Une unité ayant attaqué pendant le tour ne peut plus être déplacé durant le temps restant.
+    
+       
+
      
       
-  3. Fin de partie
+  3. Fin de partie 
+  
+   Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte ainsi la partie et celle-ci prend fin
+  
+  
   
   4. Caractéristiques des unités 
   
