@@ -12,11 +12,10 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
 
  **I/[Règles du jeu](#Règlesdujeu)**  
  **II/[Insructions d'utilisation](#Instructionsd'utilisation)**  
- **III/[Etapes de conception](#Etapesdeconception)**  
- **IV/[Difficultés](#Difficultés)**  
+ **III/[Conception](#Etapesdeconception)**  
  **V/[Documentation](#Documentation)**  
  **VI/[Contributeurs](#Contributeur)**  
- **VII/[Licence](#Licence)** 
+
  
  
  ### *Règles du jeu*
@@ -44,11 +43,37 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
       
   3. Fin de partie 
   
-   Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte ainsi la partie et celle-ci prend fin
+   Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte ainsi la partie et celle-ci prend fin.
+  
+  4. Caractéristiques des unités  
+  
+  ### *Instructions d'utilsation*  
   
   
   
-  4. Caractéristiques des unités 
+  ### *Conception*   
+  
+   +Noyau de jeu  
+        +  
+   
+   +SDL  
+   
+   +Mise en réseau  
+   
+   +Idées d'améliorations  
+    
+  
+  
+  
+  
+  ### *Documentation*  
+  
+  ### *Contributeurs*  
+  
+  + Aurelien Dad
+  + Ossan Kassegne
+  + Marin Laventure
+  
   
   
   
