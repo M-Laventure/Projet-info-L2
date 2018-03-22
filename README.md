@@ -53,14 +53,14 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   ### *Conception*   
   
-   +Noyau de jeu  
+  +Noyau de jeu  
         +  
    
-   +SDL  
+  +SDL  
    
-   +Mise en réseau  
+  +Mise en réseau  
    
-   +Idées d'améliorations  
+  +Idées d'améliorations  
     
   
   
