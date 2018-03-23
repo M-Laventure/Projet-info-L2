@@ -50,16 +50,16 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
    
   | Personnage/       | Crédit        | Points de vie | Attaque | Défense | Portée déplacement    | Portée attaque | Type |
   | Id_Personnage     |               |               |         |         |(Verticale/Horizontale)| (Idem depla)   |      |
-  |:----------------  |:--------------|:--------------|:--------|:--------|:-------------------|:---------------|:-----| 
-  | Witcher : 0       |   20          |   10       | 4       |4  |titre 5             | titre 6        |      |
-  | Mage    : 1       |   15          | 6         | 6       |2|titre 4 |titre 5 | titre 6 | titre 7|
-  | Scoia'tel: 2      |     10        | 6        | 3   |2|titre 4 |titre 5 | titre 6 | titre 7| 
-  | Nains   : 3       |       10      | 8         | 4   | 3|titre 4 |titre 5 | titre 6 | titre 7| 
-  | Spectre : 4       |     10        | 6          | 2   | 4|titre 5 | titre 6 | titre 7| 
-  | Wyvern  : 5       |    20         | 10        | 3   | 4|titre 4 |titre 5 | titre 6 | titre 7| 
-  | Leshen  : 6         |    15       | 8         | 4   | 4|titre 4 |titre 5 | titre 6 | titre 7| 
-  | Cyclope : 7        |    15        | 10        | 4   | 3|Titre 3|titre 4 |titre 5 | titre 6 | titre 7| 
-  | Doppler : 8        |    10        | 5          | 2    | 3|Titre 3|titre 4 |titre 5 | titre 6 | titre 7| 
+  |:----------------  |:--------------|:--------------|:--------|:--------|:-------------------   |:---------------|:-----| 
+  | Witcher : 0       |   20          |   10          | 4       |4        |3/3                    | 3/3            |   3  |
+  | Mage    : 1       |   15          | 6             | 6       |2        |2/2                    | 3/3            |  1  | 
+  | Scoia'tel: 2      |     10        | 6             | 3       |2        |3/3                    | 3/2            | 1    | 
+  | Nains   : 3       |       10      | 7             | 4       | 3       |3/2                    | 2/2            | 1    | 
+  | Spectre : 4       |     10        | 6             | 2       | 4       |3/3                    | 2/3            | 2    | 
+  | Wyvern  : 5       |    20         | 10            | 3       | 4       |3/3                    |3/3             | 2    | 
+  | Leshen  : 6       |    15         | 8             | 4       | 4       |2/2                    |2/2             | 2    |
+  | Cyclope : 7       |    15         | 10            | 4       | 3       |2/2                    |2/2             | 2    |  
+  | Doppler : 8       |    10         | 5             | 2       | 3       |4/3                    |2/3             | 3    | 
   
   ### *Instructions d'utilsation*  
   
