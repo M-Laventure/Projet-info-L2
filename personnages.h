@@ -46,9 +46,12 @@ typedef struct
 		/*alteration capacite_spe;*/
 	}	unite_stats;
 
+typedef struct{
+	int x;
+	int y;
+	} unite_coord;
 
-typedef struct 
- {
+typedef struct{
 	 
 	 int id_joueur;
 	 int id_unite ;
@@ -56,6 +59,7 @@ typedef struct
 	// stats caracteristiques;//
 	 char nom[20];
   	 unite_stats stats;
+	unite_coord coord;
 	
 	 } unite_s ;
 	 
