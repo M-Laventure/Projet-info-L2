@@ -246,7 +246,7 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
 }
 
 
-extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
+/*extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
 	int x,y;
 	do{
 	printf("Coordonnée x: ");
@@ -260,7 +260,7 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
 }		
 	
 	
-/*extern int verif_range_deplacement(int x, int y, unite_s* tab_ordrejeu){
+extern int verif_range_deplacement(int x, int y, unite_s* tab_ordrejeu){
 		if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement.portee_hor+ tab_ordrejeu[id_unite].stats.deplacement.portee_vert){
 			return 1;
 		}
