@@ -247,6 +247,27 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
 
 
 extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
+	int x,y;
+	do{
+	printf("Coordonnée x: ");
+	scanf("%i",&x);
+	printf("Coordonnée y: ");
+	scanf("%i",&y);
+	printf("\n");
+	}
+	while(!verif_chemin()||!verif_verif_range_deplacement(int x, int y))
+		
+		
+	
+	
+	verif_range_deplacement(int x, int y, unite_s* tab_ordrejeu)
+		if (abs(tab_ordrejeu[id_unite].)
+	//Un cas particulier si tab_ordrejeu[id_unite].nom== wyvern ou spectre
+	//algo : |coord_depart x-coord_arrivé x|+|coord_depart y-coord_arrivé y| <= points de déplacement 
+		alors return 1;
+		
+		si coord ordonné
+	
 	printf("deplacement echoué \n");
 }
 extern void attaquer(unite_s *tab_ordrejeu, int id_unite){
