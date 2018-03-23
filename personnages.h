@@ -59,7 +59,7 @@ typedef struct{
 	// stats caracteristiques;//
 	 char nom[20];
   	 unite_stats stats;
-	unite_coord coord;
+	 unite_coord coord;
 	
 	 } unite_s ;
 	 
