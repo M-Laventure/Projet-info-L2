@@ -52,6 +52,7 @@ typedef struct
 	 
 	 int id_joueur;
 	 int id_unite ;
+	 int id_classe;
 	// stats caracteristiques;//
 	 char nom[20];
   	 unite_stats stats;
