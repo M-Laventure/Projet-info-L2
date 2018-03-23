@@ -29,7 +29,6 @@ typedef struct{
 typedef struct {
  int portee_hor;
  int portee_vert;
- int portee_diag;
 } range;
 /*typedef enum {
 		aveuglement, poison, immobilisation, etourdissement
