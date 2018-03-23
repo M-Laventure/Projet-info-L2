@@ -261,7 +261,7 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
 	
 	
 	verif_range_deplacement(int x, int y, unite_s* tab_ordrejeu)
-		if (abs(tab_ordrejeu[id_unite].)
+		if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacment. 
 	//Un cas particulier si tab_ordrejeu[id_unite].nom== wyvern ou spectre
 	//algo : |coord_depart x-coord_arrivé x|+|coord_depart y-coord_arrivé y| <= points de déplacement 
 		alors return 1;
