@@ -48,9 +48,18 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   4. Tableau  des caractéristiques des personnages
   
    
-  |Personnage/Caractéristiques   | Titre 2 | Titre 3 |
-  |:---------|:--------|:--------|
-  | info 1   | info 2  | info 3  | 
+  |Personnage/      | Id_personnage | Points de vie | Attaque | Défense | Portée déplacement | Portée attaque | Type |
+   Caractéristiques
+  |:---------       |:--------      |:--------      |:--------|:--------|:--------           |:--------       |:-----| 
+  | Witcher         | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Mage                         | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Scoia'tel                    | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Nains                        | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Spectre                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Wyvern                       | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Leshen                       | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Cyclope                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Doppler                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
   
   ### *Instructions d'utilsation*  
   
