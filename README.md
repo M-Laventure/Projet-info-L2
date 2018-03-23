@@ -21,33 +21,34 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
  **VI/[Contributeurs](#Contributeur)**  
 
  
- 
+ - - -
  ### *Règles du jeu*
   
   1. Constitution de l'équipe  
-    Le jeu débute par une sélection et un placement sur le plateau simultané des unités de chaque joueur.  
-    Les joueurs sélectionnent un crédit limite qui déterminera la constitution de leur équipe : Chaque type d'unité coûte un   certain crédit et la seule restriction pour le joueur est de ne pas former une équipe dépassant le crédit maximum définit au préalable.  
-    La liste des personnages, leur identifiant et leur coût en crédit est affiché à l'écran avant chaque composition d'équipe d'un joueur. (*voir tableau statistiques*)  
-  2. Déroulement du tour  
-    Le joueur 1 commence à jouer, alternativement le joueur 2.   
-    L'ordre de jeu des unités est définit selon l'ordre de déploiement de celles-ci :   
-    Ordre de jeu  
-     -Tour 1. Unité N°1 joueur1  
-     -Tour 2. Unité N°1 joueur2  
-     -Tour 3 Unité N°2 joueur1  
-     -Tour 4 Unité N°2 joueur2  
-     etc..  
-     Pendant un tour, le joueur dispose d'un temps limité ( 1 minute) pour effectuer un déplacement et/ou une attaque contre une unité adverse ou pas. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.  
-     Tout déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.  
-     Une unité ayant attaqué pendant le tour ne peut plus être déplacé durant le temps restant.  
+  
+     Le jeu débute par une sélection et un placement sur le plateau simultané des unités de chaque joueur.  
+     Les joueurs sélectionnent un crédit limite qui déterminera la constitution de leur équipe : Chaque type d'unité coûte un    certain crédit et la seule restriction pour le joueur est de ne pas former une équipe dépassant le crédit maximum définit au préalable.  
+     La liste des personnages, leur identifiant et leur coût en crédit est affiché à l'écran avant chaque composition d'équipe d'un joueur. (*voir tableau statistiques*)  
     
-       
+  2. Déroulement du tour  
+  
+     Le joueur 1 commence à jouer, alternativement le joueur 2.   
+     L'ordre de jeu des unités est définit selon l'ordre de déploiement de celles-ci :   
+     Ordre de jeu  
+      -Tour 1. Unité N°1 joueur1  
+      -Tour 2. Unité N°1 joueur2  
+      -Tour 3 Unité N°2 joueur1  
+      -Tour 4 Unité N°2 joueur2  
+      etc..  
+      Pendant un tour, le joueur dispose d'un temps limité ( 1 minute) pour effectuer un déplacement et/ou une attaque contre     une unité adverse ou pas. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.  
+      Tout déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.  
+      Une unité ayant attaqué pendant le tour ne peut plus être déplacé durant le temps restant.  
 
-     
-      
   3. Fin de partie 
   
-   Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte ainsi la partie et celle-ci prend fin.
+     Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte la partie et celle-ci prend fin. 
+     Si un joueur passe son tour 4 fois de suite, le joueur adverse remporte la partie
+     Si un joueur n'effectue aucune action durant le temps imparti 4 tours de suite, le joueur adverse remporte la partie.
   
   4. Tableau  des caractéristiques des personnages
   
@@ -63,10 +64,13 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   | Leshen  : 6       |     15        |       8       |   4     |   4     |         2/2           |      2/2       |   2  |
   | Cyclope : 7       |     15        |       10      |   4     |   3     |         2/2           |      2/2       |   2  |  
   | Doppler : 8       |     10        |       5       |   2     |   3     |         4/3           |      2/3       |   3  | 
-  
+    
+    
+  - - - 
   ### *Instructions d'utilsation*  
   
   
+  - - - 
   
   ### *Conception*   
   
@@ -81,9 +85,12 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
     
   
   
-  
+  - - - 
   
   ### *Documentation*  
+  
+  - - -    
+  
   
   ### *Contributeurs*  
   
