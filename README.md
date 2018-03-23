@@ -48,18 +48,18 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   4. Tableau  des caractéristiques des personnages
   
    
-  |Personnage/      | Id_personnage | Points de vie | Attaque | Défense | Portée déplacement | Portée attaque | Type |
-   Caractéristiques
-  |:---------       |:--------      |:--------      |:--------|:--------|:--------           |:--------       |:-----| 
-  | Witcher         | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Mage                         | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Scoia'tel                    | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Nains                        | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Spectre                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Wyvern                       | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Leshen                       | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Cyclope                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
-  | Doppler                      | info 2  | info 3  | Titre 3|titre 4 |titre 5 | titre 6 | titre 7| titre 8| titre 9 |
+  | Personnage/       | Crédit| Points de vie | Attaque | Défense | Portée déplacement    | Portée attaque | Type |
+  | Id_Personnage     |               |               |         |         |(Verticale/Horizontale)| (Idem depla)   |      |
+  |:----------------  |:--------------|:--------------|:--------|:--------|:-------------------|:---------------|:-----| 
+  | Witcher : 0       |   20          |   10       | 4       |4  |titre 5             | titre 6        |      |
+  | Mage    : 1       |   15          | 6         | 6       |2|titre 4 |titre 5 | titre 6 | titre 7|
+  | Scoia'tel: 2      |     10        | 6        | 3   |2|titre 4 |titre 5 | titre 6 | titre 7| 
+  | Nains   : 3       |       10      | 8         | 4   | 3|titre 4 |titre 5 | titre 6 | titre 7| 
+  | Spectre : 4       |     10        | 6          | 2   | 4|titre 5 | titre 6 | titre 7| 
+  | Wyvern  : 5       |    20         | 10        | 3   | 4|titre 4 |titre 5 | titre 6 | titre 7| 
+  | Leshen  : 6         |    15       | 8         | 4   | 4|titre 4 |titre 5 | titre 6 | titre 7| 
+  | Cyclope : 7        |    15        | 10        | 4   | 3Titre 3|titre 4 |titre 5 | titre 6 | titre 7| 
+  | Doppler : 8        |    10        | 5          | 2    | 3Titre 3|titre 4 |titre 5 | titre 6 | titre 7| 
   
   ### *Instructions d'utilsation*  
   
