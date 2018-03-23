@@ -11,9 +11,13 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
 ## *Index*
 
  **I/[Règles du jeu](#Règlesdujeu)**  
+ 
  **II/[Insructions d'utilisation](#Instructionsd'utilisation)**  
+ 
  **III/[Conception](#Etapesdeconception)**  
+ 
  **V/[Documentation](#Documentation)**  
+ 
  **VI/[Contributeurs](#Contributeur)**  
 
  
