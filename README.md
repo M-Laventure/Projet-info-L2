@@ -48,7 +48,8 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   4. Tableau  des caractéristiques des personnages
   
    
-  | Personnage        | Crédit        | Points de vie | Attaque | Défense | Portée déplacement    | Portée attaque | Type |
+  | Personnage : Id   | Crédit        | Points de vie | Attaque | Défense | Portée déplacement    | Portée attaque | Type |
+  |:------------------|:--------------|:--------------|:--------|:--------|:----------------------|:---------------|:-----| 
   | Witcher : 0       |     20        |       10      |   4     |   4     |         3/3           |      3/3       |   3  |
   | Mage    : 1       |     15        |       6       |   6     |   2     |         2/2           |      3/3       |   1  | 
   | Scoia'tel: 2      |     10        |       6       |   3     |   2     |         3/3           |      3/2       |   1  | 
