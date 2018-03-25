@@ -246,8 +246,11 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
 }
 
 
-/*extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
-	int x,y;
+extern void deplacer(unite_s *tab_ordrejeu, int id_unite){
+	printf("deplacement echoué \n");
+}
+
+	/*int x,y;
 	do{
 	printf("Coordonnée x: ");
 	scanf("%i",&x);
@@ -276,8 +279,7 @@ extern int verif_range_deplacement(int x, int y, unite_s* tab_ordrejeu){
 		
 		si coord ordonné*/
 	
-	printf("deplacement echoué \n");
-}
+
 extern void attaquer(unite_s *tab_ordrejeu, int id_unite){
 	printf("attaque échouée \n");
 }
