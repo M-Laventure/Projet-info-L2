@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/Vounou/Projet-info-L2.svg.?branch=master)](https://travis-ci.org/Vounou/Projet-info-L2)
-
-# Projet-info-L2 : 
+# Projet-info-L2 [![Build Status](https://travis-ci.org/Vounou/Projet-info-L2.svg?branch=master)](https://travis-ci.org/Vounou/Projet-info-L2) 
 
 # **The Witcher Tactics Arena**
 
