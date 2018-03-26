@@ -10,11 +10,11 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
 
 ## *Index*
 
- **I/[Règles du jeu](#Règlesdujeu)**  
+ **I/[Règles du jeu](#Règles-du-jeu)**  
  
- **II/[Insructions d'utilisation](#Instructionsd'utilisation)**  
+ **II/[Insructions d'utilisation](#Instructions-d'utilisation)**  
  
- **III/[Conception](#Etapesdeconception)**  
+ **III/[Conception](#Etapes-de-conception)**  
  
  **V/[Documentation](#Documentation)**  
  
@@ -22,7 +22,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
 
  
  - - -
- ### *Règles du jeu*
+ ### **Règles du jeu**
   
   1. Constitution de l'équipe  
   
