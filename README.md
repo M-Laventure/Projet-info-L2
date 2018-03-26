@@ -22,7 +22,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
 
  
  - - -
- ### **Règles du jeu**
+ ## Règles du jeu
   
   1. Constitution de l'équipe  
   
@@ -67,12 +67,12 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
     
     
   - - - 
-  ### *Instructions d'utilsation*  
+  ## Instructions d'utilsation 
   
   
   - - - 
   
-  ### *Conception*   
+  ## Conception 
   
   + Noyau de jeu  
         +  
@@ -87,12 +87,12 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   - - - 
   
-  ### *Documentation*  
+  ## Documentation 
   
   - - -    
   
   
-  ### *Contributeurs*  
+  ## Contributeurs 
   
   + Aurelien Dad
   + Ossan Kassegne
