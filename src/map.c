@@ -44,14 +44,14 @@ int main (int argc, char ** argv){
 	ordre_jeu(tab_ordrejeu,tab_j1,tab_j2);
 	place_unite(MainMap,tab_ordrejeu);
 	printf("Carte a jour : \n");
-	AfficherMap(MainMap,&entered_size);
+	
 	
 	int i=0;
 	while(!victoire(tab_ordrejeu)){
-		if(tab_ordrejeu[i].stats.lp !=0){
+		if(tab_ordrejeu[i].stats.vie !=0){
 			AfficherMap(MainMap,&entered_size);
 			printf("\n Tour : %s n %i du joueur %i  \n ",tab_ordrejeu[i].nom,tab_ordrejeu[i].id_unite,tab_ordrejeu[i].id_joueur);
-			tour_unite(tab_ordrejeu,i);
+			tour_unite(tab_ordrejeu,i,MainMap);
 		}
 		i++;
 		if (i==20)i=0;
