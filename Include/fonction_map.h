@@ -256,6 +256,59 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 }
 
 
+
+extern int** Convertit_map(int * size,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
+
+int **tab_chemin;
+int i,j;
+int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+tab_chemin = malloc(taille_matrice*sizeof(int*));
+/*on alloue une valeur à la matrice**/
+	if (tab_chemin ==NULL){
+	printf("Allocation impossible\n");
+	exit(EXIT_FAILURE);
+
+	}
+ 	for (i=0;i<taille_matrice;i++)
+	{
+		tab_chemin[i] = malloc(taille_matrice*sizeof(int));
+		for(j=0;j<taille_matrice;j++)
+		{
+			
+			tab_chemin[i][j]=0;  /*valeur mise à zéro*/
+			if Map[i][j] !=0 {
+				tab_chemin[i][j]= -1;
+			}
+			
+		}
+	tab_chemin[x_unite][y_unite] = 3;
+	tab_chemin[x_arrivee][y_arrivee]=2;
+
+   	
+	}
+	return  tab_chemin;
+
+}
+
+
+extern int est_chemin (**tab_chemin,*size){
+/* 0 a coté d'un 1 ou 3 se transforme en 10
+dans un 2nd parcours les 10 deviennent des 1
+on verifie alors s'il y a un 1 a coté du 2(case départ)*/
+int i, j;
+int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+	
+for (y=0;i<taille_matrice;i++)
+	{
+		for(j=0;j<taille_matrice;j++)
+		{
+			if (tab_chemin[i][j]==0){
+				if (tab_chemin[i][j-1]==0)
+		}
+
+}
+
+
 extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 	int x,y;
 	do{
