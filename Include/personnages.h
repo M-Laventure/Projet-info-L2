@@ -11,6 +11,7 @@ typedef struct{
 	int bonus;
 	int faiblesse;
 } type;
+
  
  
 //Chaque unité possède une certaine portée d'attaque verticale et horizontale
@@ -25,7 +26,7 @@ typedef struct {
 typedef struct
 	{
 		int credit;
-		int vie	;
+		int vie;
 		int atq;
 		int def;
 		range portee_attaque;

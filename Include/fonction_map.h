@@ -15,21 +15,18 @@ void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur);
 void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2);
 void place_unite(int **Map,unite_s *tab_ordrejeu );
 int victoire(unite_s *tab_ordrejeu);
-void tour_unite(unite_s *tab_ordrejeu, int id_unite);
-void deplacer(unite_s *tab_ordrejeu, int id_unite);
+void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
+void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void attaquer(unite_s *tab_ordrejeu, int id_unite);
+int verif_range_deplacement(int x, int y, int id_unite, 	unite_s* tab_ordrejeu);
 
 /* Mise en oeuvre attaque */
-void calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
-
+//void calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
+//int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite);
+//int est_a_portée(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 /* Mise en oeuvre deplacement */
 
-/*Mise en oeuvre attaque
-int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite);
-int est_a_portée(unite_s *tab_ordrejeu, int id_unite, int id_cible);
-
-*/
 /********************Créer MAP*****************************************************/
 
 extern int** Map_Maker1(int * size) { //reçoit un pointeur sur size pour ne rien perdre
@@ -74,10 +71,10 @@ for (i=0;i<taille_matrice;i++)
 	{
 		for(j=0;j<taille_matrice;j++)
 		{
-			if (Map[i][j]==-2)
+			if (Map[j][i]==-2)
 				printf("%4d",0);
 			else
-				printf("%4d", Map[i][j]); // %4d pour bien séparer les chiffres la ligne
+				printf("%4d", Map[j][i]); // %4d pour bien séparer les chiffres la ligne
 		}
 	printf ( "\n");
 
@@ -119,8 +116,9 @@ extern void init_obstacle(int **tableau, int *taille_map){
  // initialisation de rand
 
 	for (i=0;i<nb_obstacle;i++){
+		coord_x = rand()%((*taille_map)-(2*zone_j))+zone_j;
 		coord_y = rand()%((*taille_map)-(2*zone_j))+zone_j;
-		coord_x = rand()%(*taille_map);
+		
 		if (tableau[coord_x][coord_y] ==-1){
 			i--;
 		}
@@ -232,15 +230,15 @@ extern int victoire(unite_s *tab_ordrejeu){
 	int vict_j1= 1 ;
 	int vict_j2= 1 ;
 	while(tab_ordrejeu[i].id_joueur !=0){
-		if (tab_ordrejeu[i].id_joueur==1 && tab_ordrejeu[i].stats.lp !=0)
+		if (tab_ordrejeu[i].id_joueur==1 && tab_ordrejeu[i].stats.vie !=0)
 			vict_j2 =0;
-		if (tab_ordrejeu[i].id_joueur==2 && tab_ordrejeu[i].stats.lp !=0)
+		if (tab_ordrejeu[i].id_joueur==2 && tab_ordrejeu[i].stats.vie !=0)
 			vict_j1 =0;
 		i++;
 	}
 	return (vict_j1 && vict_j2);
 }
-extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
+extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	int choix ;
 	printf ("Choix: 1 -attaquer, 2 -deplacer,autre -passer\n");
 	scanf("%i",&choix);
@@ -248,7 +246,7 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
 		attaquer(tab_ordrejeu, id_unite);
 	}
 	if(choix == 2){
-		deplacer(tab_ordrejeu, id_unite); 
+		deplacer(tab_ordrejeu, id_unite, Map); 
 		printf(" Choix: 1 -attaquer, autre -passer\n");
 		scanf("%i",&choix);
 		if (choix==1){
@@ -258,11 +256,8 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite){
 }
 
 
-extern void deplacer(unite_s *tab_ordrejeu, int id_unite){ // int ** Map){
-	printf("deplacement echoué \n");
-}
-
-	/*int x,y;
+extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
+	int x,y;
 	do{
 	printf("Coordonnée x: ");
 	scanf("%i",&x);
@@ -270,8 +265,25 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite){ // int ** Map){
 	scanf("%i",&y);
 	printf("\n");
 	}
-	while(!verif_chemin()||!verif_verif_range_deplacement(int x, int y)|| Map[x][y]!=0); /* Vérifie que les coordonnées saisies par le 																															joueur  permettent le déplacement : on ne peut  																										          	saisir des coordonnées où se trouve un obstacle  																											            ou une unité*/ 																														
+	while(!verif_range_deplacement(x, y, id_unite, tab_ordrejeu)|| Map[x][y]!=0);
+}
 	
+	/*Map[tab_ordrejeu[id_unite-1].coord.x][tab_ordrejeu[id_unite-1].coord.y]=0;
+	
+	tab_ordrejeu[id_unite-1].coord.x=x;
+	tab_ordrejeu[id_unite-1].coord.y=y;
+	printf("%i",id_unite);
+	Map[x][y]=id_unite;
+}*/
+	
+	
+	
+	 																													/* Vérifie que les coordonnées saisies par le 																															joueur  permettent le déplacement : on ne peut  																										          	saisir des coordonnées où se trouve un obstacle  																											            ou une unité*/ 
+	 																													
+																												
+
+
+
 // Renvoie faux si les coordonnées saisies désignent un obstacle ou une unité	
 // si l'unité a déplacer est un spectre ou une wyvern, le déplacement est possible à travers les obstacles et les autres unités	
 
@@ -285,18 +297,18 @@ int est_libre(int ** Map; int x, int y, unite_s* tab_ordrejeu){
 		return 0;
 	}
 }
-
+*/
 extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){
-		if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement.portee_hor+ tab_ordrejeu[id_unite].stats.deplacement.portee_vert){
+	if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement){
 			return 1;
 		}
-		else{
-			printf("Points de déplacement insuffisants");
-			return 0;
-		}
-
+	else{
+		printf("Points de déplacement insuffisants \n");	
+		return 0;
+	}
 }
-*/
+
+
 
 	//Un cas particulier si tab_ordrejeu[id_unite].nom== wyvern ou spectre
 	//algo : |coord_depart x-coord_arrivé x|+|coord_depart y-coord_arrivé y| <= points de déplacement 
@@ -309,16 +321,17 @@ extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordr
 extern void attaquer(unite_s *tab_ordrejeu, int id_unite){
 	int id_cible;
 	printf("Saisir l'id de l'unité à attaquer");
+}
 	/*for (int i=0;i<9;i++){
 		if(est_a_portee(tab_ordrejeu,id_unite,i){
 			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
 		}
-	}*/
+	}
 	scanf("%i", &id_cible);
 	calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
 	printf("attaque échouée \n");
 }
-
+*/
 /*Vérifie d'abord si l'unité possède assez de portée verticale ou horizontale pour atteindre la cible
 si la portée est suffisante vérifie si son champ d'attaque n'est pas bloqué par un obstacle (objet !=0 sur la map) 
 Cas particulier : si l'unité courante est une wyvern ou un spectre, on vérifie seulement la portée'*/
@@ -418,7 +431,7 @@ int attaque_possible(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
-
+/*
 void calcul_dmg(*tab_ordrejeu, id_unite, id_cible){
 	int degats;
 	degats=(tab_ordrejeu[id_unite].atq -rand(0,tab_ordrejeu[id_cible].stats.def)) + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
@@ -438,7 +451,8 @@ int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	 return 0;
 	}
 }
-	
+
+*/
 	
 
 extern unite_s * init_tab(){
