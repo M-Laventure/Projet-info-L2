@@ -18,7 +18,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
  
  **V/[Documentation](#Documentation)**  
  
- **VI/[Contributeurs](#Contributeur)**  
+ **VI/[Contributeurs](#Contributeurs)**  
 
  
  - - -
@@ -75,8 +75,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   ## Conception 
   
   + Noyau de jeu  
-        +  
-   
+    
   + SDL  
    
   + Mise en réseau  
