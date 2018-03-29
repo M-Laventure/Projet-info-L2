@@ -106,21 +106,22 @@ extern int  unitTosize(int *nombre_units){
 /********************Génération d'obstacles ********************************************/
 
 extern void init_obstacle(int **tableau, int *taille_map){
-	int nb_obstacle = (*taille_map);
+	/* cette fonction initialise les obstacles sur la map*/
+	int nb_obstacle = (*taille_map); //nb d'obstacle dépends de la taille de la map
 	int i=0;
 	int coord_x=0;
 	int coord_y=0;
-	int zone_j = (*taille_map)/4;
+	int zone_j = (*taille_map)/4; // pas d'obstacle sur les extrémités de la carte
 	printf("%i \n",zone_j);
 	
  // initialisation de rand
 
 	for (i=0;i<nb_obstacle;i++){
-		coord_x = rand()%((*taille_map)-(2*zone_j))+zone_j;
+		coord_x = rand()%((*taille_map)-(2*zone_j))+zone_j; // y et x sont donc entre 24% et 75% de la longueur et largeur
 		coord_y = rand()%((*taille_map)-(2*zone_j))+zone_j;
 		
 		if (tableau[coord_x][coord_y] ==-1){
-			i--;
+			i--;	// si un obstacle est deja présent, on recommence
 		}
 		else{
 			tableau[coord_x][coord_y] =-1;
@@ -132,6 +133,7 @@ extern void init_obstacle(int **tableau, int *taille_map){
 
 
 extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
+	/* cette fonction 
 	int num_unite;
 	int nb_unite = 0;
 	unite_s unite_courante;
@@ -155,7 +157,7 @@ extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unit
 extern void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur){
 	int x,y;
 	do{
-	printf("Coordonnée x: ");
+	printf("Coordonnée x: ");	// demande des coordonnées de placements
 	scanf("%i",&x);
 	printf("Coordonnée y: ");
 	scanf("%i",&y);
