@@ -17,15 +17,16 @@ void place_unite(int **Map,unite_s *tab_ordrejeu );
 int victoire(unite_s *tab_ordrejeu);
 void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
-void attaquer(unite_s *tab_ordrejeu, int id_unite);
+void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
 int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
 int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
 /* Mise en oeuvre attaque */
-//void calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
-//int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite);
-//int est_a_portée(unite_s *tab_ordrejeu, int id_unite, int id_cible);
+void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible);
+int trajectoire_bloque(int **Map, unite_s *tab_ordrejeu, int id_cible, int id_unite);
+int est_a_portee(unite_s *tab_ordrejeu, int **Map, int id_unite, int id_cible);
+int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 /* Mise en oeuvre deplacement */
 
@@ -401,36 +402,29 @@ extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordr
 	}
 }
 
+/*-----------Mise en oeuvre attaque------------------*/
 
-
-	//Un cas particulier si tab_ordrejeu[id_unite].nom== wyvern ou spectre
-	//algo : |coord_depart x-coord_arrivé x|+|coord_depart y-coord_arrivé y| <= points de déplacement 
-	/*	alors return 1;
-		
-		si coord ordonné*/
-	
-/*
-
-extern void attaquer(unite_s *tab_ordrejeu, int id_unite){
+extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	int id_cible;
-	printf("Saisir l'id de l'unité à attaquer");
-}
-	/*for (int i=0;i<9;i++){
-		if(est_a_portee(tab_ordrejeu,id_unite,i){
+	printf("Saisir l'id de l'unité à attaquer \n");
+	for (int i=0;i<9;i++){
+		if(est_a_portee(tab_ordrejeu, Map, id_unite, i)){
 			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
 		}
 	}
-	scanf("%i", &id_cible);
-	calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
-	printf("attaque échouée \n");
+}
+	/*scanf("%i", &id_cible);
+	if(block(unite_s *tabordrejeu, id_unite, id_cible){
+		printf("attaque bloquée \n");
+	}*/
+	/*else{
+		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
+		printf("attaque échouée \n");
+   }
 }
 */
-/*Vérifie d'abord si l'unité possède assez de portée verticale ou horizontale pour atteindre la cible
-si la portée est suffisante vérifie si son champ d'attaque n'est pas bloqué par un obstacle (objet !=0 sur la map) 
-Cas particulier : si l'unité courante est une wyvern ou un spectre, on vérifie seulement la portée'*/
 
-/*
-int est_a_portee(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 		if(tab_ordrejeu[id_unite].coord.x == tab_ordrejeu[id_cible].coord.x ){
 			if(abs(tab_ordrejeu[id_unite].coord.y-tab_ordrejeu[id_cible].coord.y)<=tab_ordrejeu[id_unite].stats.portee_attaque.vert){
 				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
@@ -438,7 +432,7 @@ int est_a_portee(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 				}
 				
 				else{
-					return trajectoire_bloque(**Map, *tab_ordrejeu, id_cible, id_unite);
+					return trajectoire_bloque(Map, tab_ordrejeu, id_cible, id_unite);
 				}
 			}
 			else{
@@ -446,13 +440,13 @@ int est_a_portee(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 			}
 		}
 			
-		if(tab_joueur[id_unite].coord.y == tab_ordrejeu[id_cible].coord.y){
+		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible].coord.y){
 			if(abs(tab_ordrejeu[id_unite].coord.x-tab_ordrejeu[id_cible].coord.x)<=tab_ordrejeu[id_unite].stats.portee_attaque.hor){
 				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
 					return 1;
 				}
 			else{
-				return trajectoire_bloque(**Map, *tab_ordrejeu, id_cible, id_unite);
+				return trajectoire_bloque(Map, tab_ordrejeu, id_cible, id_unite);
 			}
 		}
 		
@@ -460,6 +454,8 @@ int est_a_portee(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 			return 0;
 		}
 }
+}
+
 int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite){
 	if(tab_ordrejeu[id_unite].coord.y < tab_ordrejeu[id_cible].coord.y){
 		int ytemp = tab_ordrejeu[id_unite].coord.y;
@@ -483,7 +479,8 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 			}
 		}
 		return 1;
-		
+	}
+			
 	if(tab_ordrejeu[id_unite].coord.x < tab_ordrejeu[id_cible].coord.x){
 		int xtemp = tab_ordrejeu[id_unite].coord.x;
 		while(xtemp!=tab_ordrejeu[id_cible].coord.x){
@@ -507,39 +504,36 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		return 1 ;
 	}
 }
-/*
-int attaque_possible(unite_s *tab_ordrejeu, int id_unite, int id_cible){
-	if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5)
-		return est_a_portee(tab_ordrejeu, id_unite, id_cible);
-	else{
-		if(est_a_portee(tab_ordrejeu, id_unite, id_cible)){
-		
-		}
-	}
-}*/
+
+
+
+	
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
-/*
-void calcul_dmg(*tab_ordrejeu, id_unite, id_cible){
+
+
+void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	int degats;
-	degats=(tab_ordrejeu[id_unite].atq -rand(0,tab_ordrejeu[id_cible].stats.def)) + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
-	*tab_ordrejeu[id_unite].stats.vie= *tab_ordrejeu[id_unite].stats.vie - degats;
+	degats=tab_ordrejeu[id_unite].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
+	tab_ordrejeu[id_unite].stats.vie= tab_ordrejeu[id_unite].stats.vie - degats;
 }
+
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
-	if (tab_ordrejeu[id_unite].type.id_type=1 && tab_ordrejeu[id_cible].type.id_type=2)
+	if (tab_ordrejeu[id_unite].type==1 && tab_ordrejeu[id_cible].type==2){
 		return 1;
-	if (tab_ordrejeu[id_unite].type.id_type=2 && tab_ordrejeu[id_cible].type.id_type=1)
+	}
+	if (tab_ordrejeu[id_unite].type==2 && tab_ordrejeu[id_cible].type==1){
 		return 1;
-		
-	if (tab_ordrejeu[id_unite].type.id_type=0)
+	}
+	if (tab_ordrejeu[id_unite].type=0){
 		return 1;
-	
+	}
 	else{
 	 return 0;
 	}
-}
-*/
+} 
+
 	
 extern unite_s * init_tab(){
 	unite_s * tab_unite = NULL;
