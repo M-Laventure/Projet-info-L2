@@ -28,6 +28,7 @@ int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee)
 //int est_a_portée(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 /* Mise en oeuvre deplacement */
+int est_libre(unite_s* tab_ordrejeu, int id_unite)
 
 /********************Créer MAP*****************************************************/
 
@@ -345,7 +346,7 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 	printf("\n");
 	}
 	while(!verif_range_deplacement(x, y, id_unite, tab_ordrejeu)|| Map[x][y]!=0);
-}
+	}
 	
 	/*Map[tab_ordrejeu[id_unite-1].coord.x][tab_ordrejeu[id_unite-1].coord.y]=0;
 	
@@ -366,17 +367,16 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 // Renvoie faux si les coordonnées saisies désignent un obstacle ou une unité	
 // si l'unité a déplacer est un spectre ou une wyvern, le déplacement est possible à travers les obstacles et les autres unités	
 
-/*
-int est_libre(int ** Map; int x, int y, unite_s* tab_ordrejeu){
-	if(tab_ordrejeu[id_unite].id_classe==5||tab_ordrejeu[id_unite].id_classe==4)  		
+
+int est_libre(unite_s* tab_ordrejeu, int id_unite){
+	if(tab_ordrejeu[id_unite].id_classe==5||tab_ordrejeu[id_unite].id_classe==4){  		
 		return 1;																									    						
-	if(Map[x][y]==0)
-		return 1;
+	}
 	else{
 		return 0;
 	}
 }
-*/
+
 extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){
 	if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement){
 			return 1;
