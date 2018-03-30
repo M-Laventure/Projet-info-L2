@@ -1,5 +1,4 @@
 
-
 //**Prototype à mettre dans un fichier.h**/
 int** Map_Maker1(int * ); //fonction qui initialise la carte
 void AfficherMap(int **, int * );//fonction qui affiche la carte
@@ -16,22 +15,25 @@ void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur, int j
 void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2);
 void place_unite(int **Map,unite_s *tab_ordrejeu );
 int victoire(unite_s *tab_ordrejeu);
-void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
+void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
+void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
+void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
+
+
 
 /* Mise en oeuvre attaque */
-void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible);
-int block(unite_s *tab_ordrejeu, int id_cible);
 int trajectoire_bloque(int **Map, unite_s *tab_ordrejeu, int id_cible, int id_unite);
 int est_a_portee(unite_s *tab_ordrejeu, int **Map, int id_unite, int id_cible);
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
-/* Mise en oeuvre deplacement */
-void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
-int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
-int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
-int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
+/* Mise en oeuvre deplacement */
+int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
+int** Convertit_map(int taille_matrice,int** tab_chemin,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
+int unite_aerien(unite_s* tab_ordrejeu, int id_unite);
+int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee);
+int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 /********************Créer MAP*****************************************************/
 
 extern int** Map_Maker1(int * size) { //reçoit un pointeur sur size pour ne rien perdre
@@ -166,19 +168,19 @@ extern void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur
 	scanf("%i",&y);
 	printf("\n");
 		if (joueur==1){
-			if((y>=0 && y<taille_map)&&(x>=0 && x<=(taille_map/4))){
+			if((y>=0 && y<taille_map)&&(x>=0 && x<(taille_map/4))){
 				placement = 1;
 			}
 		}
 		if (joueur==2){
-			if((y>=0 && y<taille_map)&&(x<taille_map && x>3*(taille_map/4))){
+			if((y>=0 && y<taille_map)&&(x<taille_map && x>2*(taille_map/4))){
 				placement = 1;
 			}
 		}
 
-	}while ((!placement || Map[y][x] !=0));
+	}while ((!placement || Map[x][y] !=0));
 
-	Map[y][x] = -2;		// -2 etant le numero non affiché, afin que le joueur2 puissse selectionné son equipe sans avantages
+	Map[x][y] = -2;		// -2 etant le numero non affiché, afin que le joueur2 puissse selectionné son equipe sans avantages
 
 	tabjoueur[nb_unite].coord.x =x;
 	tabjoueur[nb_unite].coord.y = y;
@@ -260,7 +262,7 @@ extern int victoire(unite_s *tab_ordrejeu){
 	}
 	return (vict_j1 || vict_j2);
 }
-extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
+extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map){
 	int choix ;
 	printf ("Choix: 1 -attaquer, 2 -deplacer,autre -passer\n");
 	scanf("%i",&choix);
@@ -268,7 +270,7 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 		/*attaquer(tab_ordrejeu, id_unite);*/
 	}
 	if(choix == 2){
-		deplacer(tab_ordrejeu, id_unite, Map); 
+		deplacer(tab_ordrejeu, id_unite, Map,taille_map); 
 		printf(" Choix: 1 -attaquer, autre -passer\n");
 		scanf("%i",&choix);
 		if (choix==1){
@@ -279,25 +281,15 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 
 
 
-extern int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
+extern int** Convertit_map(int taille_matrice,int ** tab_chemin,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
 /* Cete fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin*/
-int **tab_chemin;
+
 int i,j;
 
-tab_chemin = malloc(taille_matrice*sizeof(int*));
-/*on alloue une valeur à la matrice**/
-	if (tab_chemin ==NULL){
-	printf("Allocation impossible\n");
-	exit(EXIT_FAILURE);
-
-	}
  	for (i=0;i<taille_matrice;i++)
 	{
-		tab_chemin[i] = malloc(taille_matrice*sizeof(int));
 		for(j=0;j<taille_matrice;j++)
-		{
-			
-			tab_chemin[i][j]=0;  /*valeur mise à zéro*/
+		{			  /*valeur mise à zéro*/
 			if (map[i][j] !=0) {
 				tab_chemin[i][j]= -1;
 			}
@@ -319,39 +311,58 @@ dans un 2nd parcours les 10 deviennent des 1
 on verifie alors s'il y a un 1 a coté du 2 (case départ)
 Notre objectif étant de ne transformer que les cases adjacentes en un appel de fonction, on fait deux parcours, sinon le tour de boucle serai affecté par la modification précédente*/
 	int i, j;
-	
+
 	for (i=0;i<taille_matrice;i++) // premier parcours
 		{
 			for(j=0;j<taille_matrice;j++)
 			{
+			
 				if (tab_chemin[i][j]==0){
-					if ((j>0)&&((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2))) //case dessus
-						tab_chemin[i][j]==10;
-					if ((j<taille_matrice)&&((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2)))//case dessous
-						tab_chemin[i][j]==10;
-					if ((i>0)&&((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2))) //case gauche
-						tab_chemin[i][j]==10;
-					if ((i<taille_matrice)&&((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2))) //case droite
-						tab_chemin[i][j]==10;
+					if(j>0){
+						if ((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2)){ //case dessus
+							tab_chemin[i][j]=10;}
+											
+					}
+					if(j<taille_matrice){
+						if ((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2)){//case dessous
+							tab_chemin[i][j]=10;}
+					}
+					if (i>0){
+						if((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2)){ //case gauche
+							tab_chemin[i][j]=10;}
+						
+					}
+	
+					if (i<taille_matrice-1){
+						if((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2)){ //case droite
+							tab_chemin[i][j]=10;}
+							
+					}
 				}
 			}
 	}
+		
 	for (i=0;i<taille_matrice;i++){ //second parcours
 		for(j=0;j<taille_matrice;j++){
+
 			if (tab_chemin[i][j]==10)
 				tab_chemin[i][j]=1;
 		}
 	}
+
 	//on verifie si on a un chemuin
-	if ((tab_chemin[x_arrivee][y_arrivee+1]==1) || (tab_chemin[x_arrivee][y_arrivee+-1]==1) ||  (tab_chemin[x_arrivee+1][y_arrivee]==1) ||  (tab_chemin[x_arrivee-1][y_arrivee]==1))
+	if ((tab_chemin[x_arrivee][y_arrivee+1]==1) || (tab_chemin[x_arrivee][y_arrivee+-1]==1) ||  (tab_chemin[x_arrivee+1][y_arrivee]==1) ||  (tab_chemin[x_arrivee-1][y_arrivee]==1)){
+	
 		return 1;
+	}
 	else
 		return 0;
+
 }	
 			
 
 
-extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
+extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille_map){
 	int x,y;
 	do{
 	printf("Coordonnée x: ");
@@ -360,8 +371,16 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 	scanf("%i",&y);
 	printf("\n");
 	}
-	while((!verif_range_deplacement(x, y, id_unite, tab_ordrejeu))|| (Map[x][y]!=0));
+	while(!coord_correct(taille_map,Map,id_unite,tab_ordrejeu,x,y));
+	/*while((!verif_range_deplacement(x, y, id_unite, tab_ordrejeu))|| (Map[x][y]!=0));*/
+	printf("changement");
+	Map[tab_ordrejeu[id_unite].coord.x][tab_ordrejeu[id_unite].coord.y]=0;
+	tab_ordrejeu[id_unite].coord.x=x;
+	tab_ordrejeu[id_unite].coord.y=y;
+	Map[x][y] = id_unite+1;
 
+
+	
 }
 	
 	/*Map[tab_ordrejeu[id_unite-1].coord.x][tab_ordrejeu[id_unite-1].coord.y]=0;
@@ -372,7 +391,37 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 	Map[x][y]=id_unite;
 }*/
 	
+extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee){
+	if (verif_range_deplacement(x_arrivee, y_arrivee, id_unite, tab_ordrejeu)){
+		
+		if(map[x_arrivee][y_arrivee]==0){
+			
+			if (unite_aerien(tab_ordrejeu,id_unite)){
+				return 1;
+			}
+			else{	
+			
+				int ** map_convertie=NULL ;
+				map_convertie = Map_Maker1(&taille_map);
+				map_convertie = Convertit_map(taille_map,map_convertie,map,tab_ordrejeu[id_unite].coord.x,tab_ordrejeu[id_unite].coord.y,x_arrivee,y_arrivee);
+				
+				int chemin_possible = 0;
+
+				for(int i=0; i< tab_ordrejeu[id_unite].stats.deplacement;i++){
+
+			
+					chemin_possible = est_chemin(map_convertie,taille_map,x_arrivee,y_arrivee);
+					if (chemin_possible)
+						
+						return 1;
+				}
+			}
+		}
+	}
 	
+		
+	return 0;
+}				
 	
 	 																													/* Vérifie que les coordonnées saisies par le 																															joueur  permettent le déplacement : on ne peut  																										          	saisir des coordonnées où se trouve un obstacle  																											            ou une unité*/ 
 	 																													
@@ -383,23 +432,24 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 // Renvoie faux si les coordonnées saisies désignent un obstacle ou une unité	
 // si l'unité a déplacer est un spectre ou une wyvern, le déplacement est possible à travers les obstacles et les autres unités	
 
-/*
-int est_libre(int ** Map; int x, int y, unite_s* tab_ordrejeu){
-	if(tab_ordrejeu[id_unite].id_classe==5||tab_ordrejeu[id_unite].id_classe==4)  		
+
+extern int unite_aerien(unite_s* tab_ordrejeu, int id_unite){
+
+	if(tab_ordrejeu[id_unite-1].id_classe==5||tab_ordrejeu[id_unite-1].id_classe==4)  		
 		return 1;																									    						
-	if(Map[x][y]==0)
-		return 1;
 	else{
 		return 0;
 	}
 }
-*/
-extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){
-	if (abs(tab_ordrejeu[id_unite-1].coord.x-x)+abs(tab_ordrejeu[id_unite-1].coord.y-y) <= tab_ordrejeu[id_unite-1].stats.deplacement){
+
+extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){ // prends x arrive, y arrivee
+	if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement){
 			return 1;
 		}
 	else{
-		printf("Points de déplacement insuffisants \n");	
+
+		printf("Points de déplacement insuffisants %i \n",tab_ordrejeu[id_unite].stats.deplacement);	
+
 		return 0;
 	}
 }
@@ -414,17 +464,10 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
 		}
 	}
-	scanf("%i", &id_cible);
-	if(block(tab_ordrejeu, id_unite, id_cible)){
-		printf("l'attaque a été bloqué \n");
-	}
-	else{
-		printf("l'attaque a atteint sa cible \n");
-		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
-	}
-		
-		
-	
+}
+	/*scanf("%i", &id_cible);
+	if(block(unite_s *tabordrejeu, id_unite, id_cible){
+		printf("attaque bloquée \n");
 	}*/
 	/*else{
 		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
@@ -449,7 +492,7 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 			}
 		}
 			
-		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible-1].coord.y){
+		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible].coord.y){
 			if(abs(tab_ordrejeu[id_unite].coord.x-tab_ordrejeu[id_cible].coord.x)<=tab_ordrejeu[id_unite].stats.portee_attaque.hor){
 				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
 					return 1;
@@ -520,28 +563,15 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
-extern int block(unite_s *tab_ordrejeu, int id_cible){
-	int defense_cible=tab_ordrejeu[id_cible].stats.def;
-	int blocage;
-	srand(time(NULL));
-	blocage= rand() % N;
-	printf("%i \n", blocage);
-	if(blocage<= defense_cible){
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
 
 
-extern void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	int degats;
 	degats=tab_ordrejeu[id_unite].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
 	tab_ordrejeu[id_unite].stats.vie= tab_ordrejeu[id_unite].stats.vie - degats;
 }
 
-extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if (tab_ordrejeu[id_unite].type==1 && tab_ordrejeu[id_cible].type==2){
 		return 1;
 	}
