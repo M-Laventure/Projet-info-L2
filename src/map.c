@@ -14,7 +14,7 @@ int main (int argc, char ** argv){
 	srand(time(NULL));			/*initialisation du random*/
 	int entered_size=0;
 	int credit =0;
-	
+	int ** TabChemin = NULL;
 	int ** MainMap=NULL ; /**pointeur sur notre carte créée dans le tas**/;
 
 	unite_s *tab_ref = init_tab(); /********** Tableau reference unite***********/
@@ -33,13 +33,13 @@ int main (int argc, char ** argv){
 	init_obstacle(MainMap, &entered_size);
 	AfficherMap(MainMap,&entered_size);
 
-	compo_unit(MainMap,&credit,joueur,tab_ref,tab_j1);
+	compo_unit(MainMap,entered_size,&credit,joueur,tab_ref,tab_j1);
 	AfficherMap(MainMap,&entered_size);
 	printf(" Début composition joueur 2");
 	scanf("%i",&v);
 	joueur++;
 	credit = creditmax;
-	compo_unit(MainMap,&credit,joueur,tab_ref,tab_j2);
+	compo_unit(MainMap,entered_size,&credit,joueur,tab_ref,tab_j2);
 
 	ordre_jeu(tab_ordrejeu,tab_j1,tab_j2);
 	place_unite(MainMap,tab_ordrejeu);
@@ -57,5 +57,6 @@ int main (int argc, char ** argv){
 		if (i==20)i=0;
 	
 	}
-	return 0;
+		
+         return 0;
 }
