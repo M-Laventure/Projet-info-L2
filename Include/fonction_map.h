@@ -18,7 +18,9 @@ int victoire(unite_s *tab_ordrejeu);
 void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void attaquer(unite_s *tab_ordrejeu, int id_unite);
-int verif_range_deplacement(int x, int y, int id_unite, 	unite_s* tab_ordrejeu);
+int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
+int** Convertit_map(int taille_matrice,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
+int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
 /* Mise en oeuvre attaque */
 //void calcul_dmg(*tab_ordrejeu, id_unite, id_cible);
