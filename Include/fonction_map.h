@@ -71,7 +71,7 @@ for (i=0;i<taille_matrice;i++)
 	{
 		for(j=0;j<taille_matrice;j++)
 		{
-			if (Map[j][i]==-2)
+			if (Map[j][i]==-2)   // on affiche pas les unites du joueur1 lors de la selection du joueur2
 				printf("%4d",0);
 			else
 				printf("%4d", Map[j][i]); // %4d pour bien séparer les chiffres la ligne
@@ -133,7 +133,7 @@ extern void init_obstacle(int **tableau, int *taille_map){
 
 
 extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
-	/* cette fonction 
+	/* cette fonction compose les deux equipes, joueur1 puis joueur2.*/
 	int num_unite;
 	int nb_unite = 0;
 	unite_s unite_courante;
@@ -142,11 +142,11 @@ extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unit
 		printf("Entrez %i pour deployer %s (cout: %i) \n",i,tab_ref[i].nom,tab_ref[i].stats.credit);
 	}
 	printf("Entrez 10 pour voir la map\n\n");
-	while ((*credit)>5){
+	while ((*credit)>9){	//10 etant le coût de l'unite la plus basse
 		unite_courante = saisie_unite(tab_ref);
-		if (verif_credit(credit,unite_courante.stats.credit)){
-			add_tab_joueur(tabjoueur,unite_courante,nb_unite,joueur);
-			coord_unite(Map,nb_unite,tabjoueur,joueur);
+		if (verif_credit(credit,unite_courante.stats.credit)){ // verification credit>= cout de l'unite
+			add_tab_joueur(tabjoueur,unite_courante,nb_unite,joueur); // si oui, on l'insère dans le tab du joueur associé
+			coord_unite(Map,nb_unite,tabjoueur,joueur); //puis on le place sur la map, mais sans distinction avec les autres unites pour le moment
 			nb_unite ++;
 		}
 		else{}
@@ -155,6 +155,7 @@ extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unit
 }
 
 extern void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur){
+/* cette fonction, pour chaque unité selectionner, demande x,y afin de la placer sur la map, et de modifier la structure de l'unite*/
 	int x,y;
 	do{
 	printf("Coordonnée x: ");	// demande des coordonnées de placements
@@ -175,6 +176,7 @@ extern void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur){
 }
 
 extern int verif_credit(int * credit, int credit_unite){
+/* cette fonction vérifie si l'unite selectionné peut etre acheté par le joueur*/
 	if ((*credit)>=credit_unite){
 		*credit= *credit - credit_unite;
 		printf("%i crédits restants \n", (*credit));
@@ -189,6 +191,7 @@ extern int verif_credit(int * credit, int credit_unite){
 }
 
 extern unite_s saisie_unite(unite_s *tab){
+/* a partir du numero rentré par le joueur, cette fonction nous retourne l'unite associé (toutes etant référencé dans tab_ref)*/
 	int id_unite;
 	printf("Selectionnez une unité à déployer \n");
 	scanf("%i",&id_unite);
@@ -196,11 +199,13 @@ extern unite_s saisie_unite(unite_s *tab){
 }
 
 extern void add_tab_joueur(unite_s *tab_joueur,unite_s unite_courante, int nb_unite, int joueur){
+/* cette fonction ajoute l'unite selectionner dans le tableau ordre_de_jeu, en distinguant j1 et j2*/
 	tab_joueur[nb_unite] = unite_courante;
 	tab_joueur[nb_unite].id_joueur = joueur;	
 }
 
 extern void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2){
+
 	int id = 1;
 	int i =0;
 	while (tab_j1[i].id_joueur!= 0 || tab_j2[i].id_joueur !=0){
