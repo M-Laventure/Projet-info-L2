@@ -17,13 +17,9 @@ void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2);
 void place_unite(int **Map,unite_s *tab_ordrejeu );
 int victoire(unite_s *tab_ordrejeu);
 void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
-void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
-void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
-int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
-int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
-int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
 /* Mise en oeuvre attaque */
+void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 int block(unite_s *tab_ordrejeu, int id_cible);
 int trajectoire_bloque(int **Map, unite_s *tab_ordrejeu, int id_cible, int id_unite);
@@ -31,6 +27,10 @@ int est_a_portee(unite_s *tab_ordrejeu, int **Map, int id_unite, int id_cible);
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 /* Mise en oeuvre deplacement */
+void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
+int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
+int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
+int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
 /********************Créer MAP*****************************************************/
 
@@ -434,9 +434,9 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 */
 
 int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
-		if(tab_ordrejeu[id_unite-1].coord.x == tab_ordrejeu[id_cible-1].coord.x ){
-			if(abs(tab_ordrejeu[id_unite-1].coord.y-tab_ordrejeu[id_cible-1].coord.y)<=tab_ordrejeu[id_unite-1].stats.portee_attaque.vert){
-				if(tab_ordrejeu[id_unite-1].id_classe==4 || tab_ordrejeu[id_unite-1].id_classe==5){
+		if(tab_ordrejeu[id_unite].coord.x == tab_ordrejeu[id_cible].coord.x ){
+			if(abs(tab_ordrejeu[id_unite].coord.y-tab_ordrejeu[id_cible].coord.y)<=tab_ordrejeu[id_unite].stats.portee_attaque.vert){
+				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
 					return 1;
 				}
 				
@@ -449,9 +449,9 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 			}
 		}
 			
-		if(tab_ordrejeu[id_unite-1].coord.y == tab_ordrejeu[id_cible-1].coord.y){
-			if(abs(tab_ordrejeu[id_unite-1].coord.x-tab_ordrejeu[id_cible-1].coord.x)<=tab_ordrejeu[id_unite-1].stats.portee_attaque.hor){
-				if(tab_ordrejeu[id_unite-1].id_classe==4 || tab_ordrejeu[id_unite-1].id_classe==5){
+		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible-1].coord.y){
+			if(abs(tab_ordrejeu[id_unite].coord.x-tab_ordrejeu[id_cible].coord.x)<=tab_ordrejeu[id_unite].stats.portee_attaque.hor){
+				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
 					return 1;
 				}
 			else{
@@ -466,11 +466,11 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 }
 
 int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite){
-	if(tab_ordrejeu[id_unite-1].coord.y < tab_ordrejeu[id_cible-1].coord.y){
-		int ytemp = tab_ordrejeu[id_unite-1].coord.y;
-		while(ytemp!=tab_ordrejeu[id_cible-1].coord.y){
+	if(tab_ordrejeu[id_unite].coord.y < tab_ordrejeu[id_cible].coord.y){
+		int ytemp = tab_ordrejeu[id_unite].coord.y;
+		while(ytemp!=tab_ordrejeu[id_cible].coord.y){
 			ytemp++;
-			if(Map[tab_ordrejeu[id_unite-1].coord.x][ytemp]!=0){
+			if(Map[tab_ordrejeu[id_unite].coord.x][ytemp]!=0){
 				return 0;
 				break;
 			}
@@ -478,11 +478,11 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		return 1 ;
 	}
 	
-	 if (tab_ordrejeu[id_unite-1].coord.y > tab_ordrejeu[id_cible-1].coord.y){
-		int ytemp = tab_ordrejeu[id_unite-1].coord.y;
-		while(ytemp!=tab_ordrejeu[id_cible-1].coord.y){
+	 if (tab_ordrejeu[id_unite].coord.y > tab_ordrejeu[id_cible].coord.y){
+		int ytemp = tab_ordrejeu[id_unite].coord.y;
+		while(ytemp!=tab_ordrejeu[id_cible].coord.y){
 			ytemp--;
-			if(Map[tab_ordrejeu[id_unite-1].coord.x][ytemp]!=0){
+			if(Map[tab_ordrejeu[id_unite].coord.x][ytemp]!=0){
 				return 0;
 				break;
 			}
@@ -490,22 +490,22 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		return 1;
 	}
 			
-	if(tab_ordrejeu[id_unite-1].coord.x < tab_ordrejeu[id_cible-1].coord.x){
-		int xtemp = tab_ordrejeu[id_unite-1].coord.x;
-		while(xtemp!=tab_ordrejeu[id_cible-1].coord.x){
+	if(tab_ordrejeu[id_unite].coord.x < tab_ordrejeu[id_cible].coord.x){
+		int xtemp = tab_ordrejeu[id_unite].coord.x;
+		while(xtemp!=tab_ordrejeu[id_cible].coord.x){
 			xtemp++;
-			if(Map[xtemp][tab_ordrejeu[id_unite-1].coord.y]!=0){
+			if(Map[xtemp][tab_ordrejeu[id_unite].coord.y]!=0){
 				return 0;
 				break;
 			}
 		}
 		return 1 ;
 	}
-	if(tab_ordrejeu[id_unite-1].coord.x > tab_ordrejeu[id_cible-1].coord.x){
-		int xtemp = tab_ordrejeu[id_unite-1].coord.x;
-		while(xtemp!=tab_ordrejeu[id_cible-1].coord.x){
+	if(tab_ordrejeu[id_unite].coord.x > tab_ordrejeu[id_cible].coord.x){
+		int xtemp = tab_ordrejeu[id_unite].coord.x;
+		while(xtemp!=tab_ordrejeu[id_cible].coord.x){
 			xtemp--;
-			if(Map[xtemp][tab_ordrejeu[id_unite-1].coord.y]!=0){
+			if(Map[xtemp][tab_ordrejeu[id_unite].coord.y]!=0){
 				return 0;
 				break;
 			}
@@ -537,18 +537,18 @@ extern int block(unite_s *tab_ordrejeu, int id_cible){
 
 extern void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	int degats;
-	degats=tab_ordrejeu[id_unite-1].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
-	tab_ordrejeu[id_unite-1].stats.vie= tab_ordrejeu[id_unite-1].stats.vie - degats;
+	degats=tab_ordrejeu[id_unite].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
+	tab_ordrejeu[id_unite].stats.vie= tab_ordrejeu[id_unite].stats.vie - degats;
 }
 
 extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
-	if (tab_ordrejeu[id_unite-1].type==1 && tab_ordrejeu[id_cible-1].type==2){
+	if (tab_ordrejeu[id_unite].type==1 && tab_ordrejeu[id_cible].type==2){
 		return 1;
 	}
-	if (tab_ordrejeu[id_unite-1].type==2 && tab_ordrejeu[id_cible-1].type==1){
+	if (tab_ordrejeu[id_unite].type==2 && tab_ordrejeu[id_cible].type==1){
 		return 1;
 	}
-	if (tab_ordrejeu[id_unite-1].type=0){
+	if (tab_ordrejeu[id_unite].type=0){
 		return 1;
 	}
 	else{
