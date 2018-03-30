@@ -243,7 +243,7 @@ extern int victoire(unite_s *tab_ordrejeu){
 			vict_j1 =0;
 		i++;
 	}
-	return (vict_j1 && vict_j2);
+	return (vict_j1 || vict_j2);
 }
 extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	int choix ;
