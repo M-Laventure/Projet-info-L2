@@ -22,7 +22,9 @@ void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 
 
 /* Mise en oeuvre attaque */
+void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible);
+int block(unite_s *tab_ordrejeu, int id_cible);
 int trajectoire_bloque(int **Map, unite_s *tab_ordrejeu, int id_cible, int id_unite);
 int est_a_portee(unite_s *tab_ordrejeu, int **Map, int id_unite, int id_cible);
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
@@ -458,23 +460,23 @@ extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordr
 
 extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	int id_cible;
+	printf("defense %i\n", tab_ordrejeu[id_unite].stats.def);
 	printf("Saisir l'id de l'unité à attaquer \n");
 	for (int i=0;i<9;i++){
 		if(est_a_portee(tab_ordrejeu, Map, id_unite, i)){
 			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
 		}
 	}
-}
-	/*scanf("%i", &id_cible);
-	if(block(unite_s *tabordrejeu, id_unite, id_cible){
-		printf("attaque bloquée \n");
-	}*/
-	/*else{
+	scanf("%i", &id_cible);
+	printf("defense cible: %i\n", tab_ordrejeu[id_cible].stats.def);
+	if(block(tab_ordrejeu, id_cible)){
+		printf("l'attaque a été bloqué \n");
+	}
+	if(!block(tab_ordrejeu, id_cible)){
+		printf("l'attaque a atteint sa cible \n");
 		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
-		printf("attaque échouée \n");
-   }
+	}
 }
-*/
 
 int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 		if(tab_ordrejeu[id_unite].coord.x == tab_ordrejeu[id_cible].coord.x ){
@@ -492,7 +494,7 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 			}
 		}
 			
-		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible].coord.y){
+		if(tab_ordrejeu[id_unite].coord.y == tab_ordrejeu[id_cible-1].coord.y){
 			if(abs(tab_ordrejeu[id_unite].coord.x-tab_ordrejeu[id_cible].coord.x)<=tab_ordrejeu[id_unite].stats.portee_attaque.hor){
 				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
 					return 1;
@@ -505,8 +507,9 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 		else {
 			return 0;
 		}
+	}
 }
-}
+
 
 int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite){
 	if(tab_ordrejeu[id_unite].coord.y < tab_ordrejeu[id_cible].coord.y){
@@ -558,20 +561,36 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 }
 
 
-
 	
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
 
 
-void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+/*------------Mise en oeuvre calcul_dmg---------------------*/
+
+extern int block(unite_s *tab_ordrejeu, int id_cible){
+	int defense_cible=tab_ordrejeu[id_cible].stats.def;
+	int blocage;
+	srand(time(NULL));
+	blocage= rand() % N;
+	printf("%i \n", blocage);
+	if(blocage<=defense_cible){
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+
+extern void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	int degats;
 	degats=tab_ordrejeu[id_unite].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
 	tab_ordrejeu[id_unite].stats.vie= tab_ordrejeu[id_unite].stats.vie - degats;
 }
 
-int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if (tab_ordrejeu[id_unite].type==1 && tab_ordrejeu[id_cible].type==2){
 		return 1;
 	}
@@ -585,6 +604,7 @@ int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	 return 0;
 	}
 } 
+
 
 	
 extern unite_s * init_tab(){
