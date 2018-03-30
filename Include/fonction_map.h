@@ -25,6 +25,7 @@ int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee)
 
 /* Mise en oeuvre attaque */
 void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible);
+int block(unite_s *tab_ordrejeu, int id_cible);
 int trajectoire_bloque(int **Map, unite_s *tab_ordrejeu, int id_cible, int id_unite);
 int est_a_portee(unite_s *tab_ordrejeu, int **Map, int id_unite, int id_cible);
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
@@ -413,10 +414,17 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
 		}
 	}
-}
-	/*scanf("%i", &id_cible);
-	if(block(unite_s *tabordrejeu, id_unite, id_cible){
-		printf("attaque bloquée \n");
+	scanf("%i", &id_cible);
+	if(block(tab_ordrejeu, id_unite, id_cible)){
+		printf("l'attaque a été bloqué \n");
+	}
+	else{
+		printf("l'attaque a atteint sa cible \n");
+		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
+	}
+		
+		
+	
 	}*/
 	/*else{
 		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
@@ -512,31 +520,28 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
-int block(unite_s *tab_ordrejeu, int id_cible){
-	
-	int defense_cible= tab_ordrejeu[id_cible].stats.def;
+extern int block(unite_s *tab_ordrejeu, int id_cible){
+	int defense_cible=tab_ordrejeu[id_cible].stats.def;
 	int blocage;
 	srand(time(NULL));
 	blocage= rand() % N;
 	printf("%i \n", blocage);
 	if(blocage<= defense_cible){
-		printf("l'attaque a été bloqué \n");
 		return 1;
 	}
 	else {
-		printf("l'attaque a atteint sa cible \n");
 		return 0;
 	}
 }
 
 
-void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+extern void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	int degats;
 	degats=tab_ordrejeu[id_unite-1].stats.atq + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
 	tab_ordrejeu[id_unite-1].stats.vie= tab_ordrejeu[id_unite-1].stats.vie - degats;
 }
 
-int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
+extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if (tab_ordrejeu[id_unite-1].type==1 && tab_ordrejeu[id_cible-1].type==2){
 		return 1;
 	}
