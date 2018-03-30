@@ -1,6 +1,6 @@
 #include <stdlib.h> 
 #include <stdio.h>
-
+#define N 100
 //typedef enum {witcher, mage, scoiatel, nains, spectre, wyvern, goule, leshen , cyclope, doppler} id_classe;
 
 
