@@ -6,12 +6,12 @@ int  unitTosize(int *);//fonction redéfinie la taille de la map
 void init_obstacle(int **, int *);
 void placement_auto1(int **, int *, int * , char );
 int placement_manuel(int **, int *, int, int);
-void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
+void  compo_unit(int **Map, int taille_map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
 int verif_credit(int * credit, int credit_unite);
 unite_s * init_tab();
 unite_s saisie_unite(unite_s * tab);
 void add_tab_joueur(unite_s *tab_joueur,unite_s unite_courante, int nb_unite, int joueur);
-void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur);
+void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur, int joueur);
 void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2);
 void place_unite(int **Map,unite_s *tab_ordrejeu );
 int victoire(unite_s *tab_ordrejeu);
@@ -19,7 +19,7 @@ void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 void attaquer(unite_s *tab_ordrejeu, int id_unite);
 int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
-int** Convertit_map(int taille_matrice,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
+int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
 int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 
 /* Mise en oeuvre attaque */
@@ -28,7 +28,6 @@ int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee)
 //int est_a_portée(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 /* Mise en oeuvre deplacement */
-int est_libre(unite_s* tab_ordrejeu, int id_unite)
 
 /********************Créer MAP*****************************************************/
 
@@ -88,6 +87,7 @@ for (i=0;i<taille_matrice;i++)
 
 extern int  unitTosize(int *nombre_units){
 /* Cette fonction calcule la taille de la matrice en fonction du nombre de crédits choisit*/
+	int taille_matrice=4;
 	int n_units=(*nombre_units);
 	if(n_units<20)
 		taille_matrice = 4;
@@ -130,7 +130,7 @@ extern void init_obstacle(int **tableau, int *taille_map){
 
 
 
-extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
+extern void  compo_unit(int **Map,int taille_map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
 	/* cette fonction compose les deux equipes, joueur1 puis joueur2.*/
 	int num_unite;
 	int nb_unite = 0;
@@ -144,27 +144,39 @@ extern void  compo_unit(int **Map, int *credit, int joueur,unite_s *tab_ref,unit
 		unite_courante = saisie_unite(tab_ref);
 		if (verif_credit(credit,unite_courante.stats.credit)){ // verification credit>= cout de l'unite
 			add_tab_joueur(tabjoueur,unite_courante,nb_unite,joueur); // si oui, on l'insère dans le tab du joueur associé
-			coord_unite(Map,nb_unite,tabjoueur,joueur); //puis on le place sur la map, mais sans distinction avec les autres unites pour le moment
+			coord_unite(Map,taille_map,nb_unite,tabjoueur,joueur); //puis on le place sur la map, mais sans distinction avec les autres unites pour le moment
 			nb_unite ++;
 		}
-		else{}
-			
+					
 	}
 }
 
-extern void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur){
+extern void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur, int joueur){
 /* cette fonction, pour chaque unité selectionner, demande x,y afin de la placer sur la map, et de modifier la structure de l'unite*/
 	int x,y;
+	int placement;
 	do{
+	placement=0;
 	printf("Coordonnée x: ");	// demande des coordonnées de placements
 	scanf("%i",&x);
 	printf("Coordonnée y: ");
 	scanf("%i",&y);
 	printf("\n");
-	}while (Map[y][x] !=0);
+		if (joueur==1){
+			if((y>=0 && y<taille_map)&&(x>=0 && x<=(taille_map/4))){
+				placement = 1;
+			}
+		}
+		if (joueur==2){
+			if((y>=0 && y<taille_map)&&(x<taille_map && x>3*(taille_map/4))){
+				placement = 1;
+			}
+		}
+
+	}while ((!placement || Map[y][x] !=0));
 
 	Map[y][x] = -2;		// -2 etant le numero non affiché, afin que le joueur2 puissse selectionné son equipe sans avantages
-;
+
 	tabjoueur[nb_unite].coord.x =x;
 	tabjoueur[nb_unite].coord.y = y;
 	
@@ -250,21 +262,21 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	printf ("Choix: 1 -attaquer, 2 -deplacer,autre -passer\n");
 	scanf("%i",&choix);
 	if(choix == 1){
-		attaquer(tab_ordrejeu, id_unite);
+		/*attaquer(tab_ordrejeu, id_unite);*/
 	}
 	if(choix == 2){
 		deplacer(tab_ordrejeu, id_unite, Map); 
 		printf(" Choix: 1 -attaquer, autre -passer\n");
 		scanf("%i",&choix);
 		if (choix==1){
-			attaquer(tab_ordrejeu,id_unite);
+			/*attaquer(tab_ordrejeu,id_unite);*/
 		}
 	}
 }
 
 
 
-extern int** Convertit_map(int taille_matrice,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
+extern int** Convertit_map(int taille_matrice,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
 /* Cete fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin*/
 int **tab_chemin;
 int i,j;
@@ -283,7 +295,7 @@ tab_chemin = malloc(taille_matrice*sizeof(int*));
 		{
 			
 			tab_chemin[i][j]=0;  /*valeur mise à zéro*/
-			if Map[i][j] !=0 {
+			if (map[i][j] !=0) {
 				tab_chemin[i][j]= -1;
 			}
 			
@@ -310,13 +322,13 @@ Notre objectif étant de ne transformer que les cases adjacentes en un appel de 
 			for(j=0;j<taille_matrice;j++)
 			{
 				if (tab_chemin[i][j]==0){
-					if (j>0)&&((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2)) //case dessus
+					if ((j>0)&&((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2))) //case dessus
 						tab_chemin[i][j]==10;
-					if (j<taille_matrice)&&((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2))//case dessous
+					if ((j<taille_matrice)&&((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2)))//case dessous
 						tab_chemin[i][j]==10;
-					if (i>0)&&((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2)) //case gauche
+					if ((i>0)&&((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2))) //case gauche
 						tab_chemin[i][j]==10;
-					if (i<taille_matrice)&&((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2)) //case droite
+					if ((i<taille_matrice)&&((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2))) //case droite
 						tab_chemin[i][j]==10;
 				}
 			}
@@ -345,8 +357,9 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 	scanf("%i",&y);
 	printf("\n");
 	}
-	while(!verif_range_deplacement(x, y, id_unite, tab_ordrejeu)|| Map[x][y]!=0);
-	}
+	while((!verif_range_deplacement(x, y, id_unite, tab_ordrejeu))|| (Map[x][y]!=0));
+
+}
 	
 	/*Map[tab_ordrejeu[id_unite-1].coord.x][tab_ordrejeu[id_unite-1].coord.y]=0;
 	
@@ -367,16 +380,17 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
 // Renvoie faux si les coordonnées saisies désignent un obstacle ou une unité	
 // si l'unité a déplacer est un spectre ou une wyvern, le déplacement est possible à travers les obstacles et les autres unités	
 
-
-int est_libre(unite_s* tab_ordrejeu, int id_unite){
-	if(tab_ordrejeu[id_unite].id_classe==5||tab_ordrejeu[id_unite].id_classe==4){  		
+/*
+int est_libre(int ** Map; int x, int y, unite_s* tab_ordrejeu){
+	if(tab_ordrejeu[id_unite].id_classe==5||tab_ordrejeu[id_unite].id_classe==4)  		
 		return 1;																									    						
-	}
+	if(Map[x][y]==0)
+		return 1;
 	else{
 		return 0;
 	}
 }
-
+*/
 extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){
 	if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement){
 			return 1;
@@ -395,7 +409,7 @@ extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordr
 		
 		si coord ordonné*/
 	
-
+/*
 
 extern void attaquer(unite_s *tab_ordrejeu, int id_unite){
 	int id_cible;
@@ -446,9 +460,7 @@ int est_a_portee(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 			return 0;
 		}
 }
-
 int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite){
-
 	if(tab_ordrejeu[id_unite].coord.y < tab_ordrejeu[id_cible].coord.y){
 		int ytemp = tab_ordrejeu[id_unite].coord.y;
 		while(ytemp!=tab_ordrejeu[id_cible].coord.y){
@@ -483,7 +495,6 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		}
 		return 1 ;
 	}
-
 	if(tab_ordrejeu[id_unite].coord.x > tab_ordrejeu[id_cible].coord.x){
 		int xtemp = tab_ordrejeu[id_unite].coord.x;
 		while(xtemp!=tab_ordrejeu[id_cible].coord.x){
@@ -496,7 +507,6 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		return 1 ;
 	}
 }
-
 /*
 int attaque_possible(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5)
@@ -516,7 +526,6 @@ void calcul_dmg(*tab_ordrejeu, id_unite, id_cible){
 	degats=(tab_ordrejeu[id_unite].atq -rand(0,tab_ordrejeu[id_cible].stats.def)) + est_vulnerable(tab_ordrejeu, id_unite, id_cible);
 	*tab_ordrejeu[id_unite].stats.vie= *tab_ordrejeu[id_unite].stats.vie - degats;
 }
-
 int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if (tab_ordrejeu[id_unite].type.id_type=1 && tab_ordrejeu[id_cible].type.id_type=2)
 		return 1;
@@ -530,14 +539,12 @@ int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	 return 0;
 	}
 }
-
 */
 	
-
 extern unite_s * init_tab(){
 	unite_s * tab_unite = NULL;
 	tab_unite = malloc(10*sizeof(unite_s)); //2 structures
-//id_j,id_unite,nom,(credit,lp,atq,def,(atq hor,vert),(deplacement),(type,faiblesse,bonus))
+//id_j,id_unite,nom,(credit,vie,atq,def,(atq hor,vert),(deplacement),(type,faiblesse,bonus))
 	
 	unite_s witcher  = {0,0, 0, 3 ,"witcher", {40, 10, 4, 4, {3,1} ,3 }};
 	unite_s mage     = {0,0, 1, 1 ,"mage",    {15, 5,  6, 2, {3,1} ,2 }};
@@ -558,6 +565,5 @@ extern unite_s * init_tab(){
 	tab_unite[7] = cyclope ;
 	tab_unite[8] = doppler ;
 	
-	return tab_unite;
-
+return tab_unite;
 }
