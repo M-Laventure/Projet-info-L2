@@ -165,7 +165,7 @@ extern void coord_unite(int **Map,int nb_unite,unite_s *tabjoueur, int joueur){
 	printf("\n");
 	}while (Map[y][x] !=0);
 
-	Map[y][x] = -2;
+	Map[y][x] = -2;		// -2 etant le numero non affiché, afin que le joueur2 puissse selectionné son equipe sans avantages
 ;
 	tabjoueur[nb_unite].coord.x =x;
 	tabjoueur[nb_unite].coord.y = y;
@@ -205,7 +205,7 @@ extern void add_tab_joueur(unite_s *tab_joueur,unite_s unite_courante, int nb_un
 }
 
 extern void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2){
-
+/* cette fonction creer un tableau contenant les unités du joueur1 et 2, de manière alterné (entassement à la fin si difference de taille)*/
 	int id = 1;
 	int i =0;
 	while (tab_j1[i].id_joueur!= 0 || tab_j2[i].id_joueur !=0){
@@ -224,6 +224,7 @@ extern void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2){
 }
 
 extern void place_unite(int **Map,unite_s *tab_ordrejeu ){
+/* cette fonction place les unites (cette fois non caché et de manière définitive) sur la  map*/
 	int i =0;
 	while(tab_ordrejeu[i].id_joueur !=0){
 		Map[tab_ordrejeu[i].coord.x][tab_ordrejeu[i].coord.y]=tab_ordrejeu[i].id_unite;
@@ -233,6 +234,7 @@ extern void place_unite(int **Map,unite_s *tab_ordrejeu ){
 
 
 extern int victoire(unite_s *tab_ordrejeu){
+/* cette fonction renvoit 1 si un gagnant existe, 0 sinon*/
 	int i =0;
 	int vict_j1= 1 ;
 	int vict_j2= 1 ;
