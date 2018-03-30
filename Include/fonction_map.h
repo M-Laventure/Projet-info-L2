@@ -266,11 +266,11 @@ extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map){
 
 
 
-extern int** Convertit_map(int * size,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
-
+extern int** Convertit_map(int taille_matrice,**map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
+/* Cete fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin*/
 int **tab_chemin;
 int i,j;
-int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+
 tab_chemin = malloc(taille_matrice*sizeof(int*));
 /*on alloue une valeur à la matrice**/
 	if (tab_chemin ==NULL){
@@ -300,22 +300,42 @@ tab_chemin = malloc(taille_matrice*sizeof(int*));
 }
 
 
-extern int est_chemin (**tab_chemin,*size){
+extern int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee){
 /* 0 a coté d'un 1 ou 3 se transforme en 10
 dans un 2nd parcours les 10 deviennent des 1
-on verifie alors s'il y a un 1 a coté du 2(case départ)*/
-int i, j;
-int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+on verifie alors s'il y a un 1 a coté du 2 (case départ)
+Notre objectif étant de ne transformer que les cases adjacentes en un appel de fonction, on fait deux parcours, sinon le tour de boucle serai affecté par la modification précédente*/
+	int i, j;
 	
-for (y=0;i<taille_matrice;i++)
-	{
-		for(j=0;j<taille_matrice;j++)
+	for (i=0;i<taille_matrice;i++) // premier parcours
 		{
-			if (tab_chemin[i][j]==0){
-				if (tab_chemin[i][j-1]==0)
+			for(j=0;j<taille_matrice;j++)
+			{
+				if (tab_chemin[i][j]==0){
+					if (j>0)&&((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2)) //case dessus
+						tab_chemin[i][j]==10;
+					if (j<taille_matrice)&&((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2))//case dessous
+						tab_chemin[i][j]==10;
+					if (i>0)&&((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2)) //case gauche
+						tab_chemin[i][j]==10;
+					if (i<taille_matrice)&&((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2)) //case droite
+						tab_chemin[i][j]==10;
+				}
+			}
+	}
+	for (i=0;i<taille_matrice;i++){ //second parcours
+		for(j=0;j<taille_matrice;j++){
+			if (tab_chemin[i][j]==10)
+				tab_chemin[i][j]=1;
 		}
-
-}
+	}
+	//on verifie si on a un chemuin
+	if ((tab_chemin[x_arrivee][y_arrivee+1]==1) || (tab_chemin[x_arrivee][y_arrivee+-1]==1) ||  (tab_chemin[x_arrivee+1][y_arrivee]==1) ||  (tab_chemin[x_arrivee-1][y_arrivee]==1))
+		return 1;
+	else
+		return 0;
+}	
+			
 
 
 extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map){
