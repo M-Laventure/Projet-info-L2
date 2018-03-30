@@ -81,22 +81,17 @@ for (i=0;i<taille_matrice;i++)
 	}
 }
 
-/********************************************Taile de la matrice en fonction du nombre d'unité******************************/
 
-extern int  unitTosize(int *nombre_units){	
+
+extern int  unitTosize(int *nombre_units){
+/* Cette fonction calcule la taille de la matrice en fonction du nombre de crédits choisit*/
 	int n_units=(*nombre_units);
-
-	int taille_matrice = 4;
-	/*A améliorer*/
-	
-	if(n_units<20){
+	if(n_units<20)
 		taille_matrice = 4;
-		}
-	else if (n_units<100){
+	else if (n_units<100)
 		taille_matrice = 10;
-		}
 
-	else {taille_matrice = 20;}
+	else taille_matrice = 20;
 
 	return taille_matrice;
 
