@@ -1,4 +1,5 @@
 
+
 //**Prototype à mettre dans un fichier.h**/
 int** Map_Maker1(int * ); //fonction qui initialise la carte
 void AfficherMap(int **, int * );//fonction qui affiche la carte
@@ -511,6 +512,22 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
+int block(unite_s *tab_ordrejeu, int id_cible){
+	
+	int defense_cible= tab_ordrejeu[id_cible].stats.def;
+	int blocage;
+	srand(time(NULL));
+	blocage= rand() % N;
+	printf("%i \n", blocage);
+	if(blocage<= defense_cible){
+		printf("l'attaque a été bloqué \n");
+		return 1;
+	}
+	else {
+		printf("l'attaque a atteint sa cible \n");
+		return 0;
+	}
+}
 
 
 void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
