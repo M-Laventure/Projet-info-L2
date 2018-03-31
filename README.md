@@ -26,7 +26,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   1. Constitution de l'équipe  
   
-     Le jeu débute par une sélection et un placement sur le plateau simultané des unités de chaque joueur.  
+     Le jeu débute par une sélection et un placement sur le plateau successif des unités de chaque joueur.  
      Les joueurs sélectionnent un crédit limite qui déterminera la constitution de leur équipe : Chaque type d'unité coûte un    certain crédit et la seule restriction pour le joueur est de ne pas former une équipe dépassant le crédit maximum définit au préalable.  
      La liste des personnages, leur identifiant et leur coût en crédit est affiché à l'écran avant chaque composition d'équipe d'un joueur. (*voir tableau statistiques*)  
     
@@ -40,20 +40,20 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
       -Tour 3 Unité N°2 joueur1  
       -Tour 4 Unité N°2 joueur2  
       etc..  
-      Pendant un tour, le joueur dispose d'un temps limité ( 1 minute) pour effectuer un déplacement et/ou une attaque contre     une unité adverse ou pas. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.  
+      Pendant un tour, le joueur peut effectuer un déplacement et/ou une attaque contre une unité adverse allié ou adverse. Le joueur à le choix entre l'attaque normale et spéciale propre à son unité courante.  ( Attaque 
       Tout déplacement devra être réalisé avant une attaque si le joueur compte déplacer son unité pendant le tour.  
-      Une unité ayant attaqué pendant le tour ne peut plus être déplacé durant le temps restant.  
+      Une unité ayant attaqué pendant le tour ne peut plus être déplacé durant le même tour.
 
   3. Fin de partie 
   
      Lorsque un des deux joueurs a éliminé toutes les unités adverses, il remporte la partie et celle-ci prend fin. 
-     Si un joueur passe son tour 4 fois de suite, le joueur adverse remporte la partie
-     Si un joueur n'effectue aucune action durant le temps imparti 4 tours de suite, le joueur adverse remporte la partie.
+     Si un joueur passe son tour 4 fois de suite, le joueur adverse remporte la partie.
+    
   
   4. Tableau  des caractéristiques des personnages
   
    
-  | Personnage : Id   | Crédit        | Points de vie | Attaque | Défense | Points déplacement    | Portée attaque | Type |
+  | Personnage : Id   | Crédit        | Points de vie | Attaque | Défense | Points déplacement*   | Portée attaque*| Type*|
   |:------------------|:--------------|:--------------|:--------|:--------|:----------------------|:---------------|:-----| 
   | Witcher : 0       |     20        |       10      |   4     |   40    |         3             |      3/3       |   3  |
   | Mage    : 1       |     15        |       6       |   6     |   20    |         2             |      3/3       |   1  | 
@@ -64,6 +64,17 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   | Leshen  : 6       |     15        |       8       |   4     |   40    |         2             |      2/2       |   2  |
   | Cyclope : 7       |     15        |       10      |   4     |   30    |         2             |      2/2       |   2  |  
   | Doppler : 8       |     10        |       5       |   2     |   30    |         4             |      2/3       |   3  | 
+  
+  5. Particularités
+  
+   + Points déplacement : Les classes Wyvern et Spectre peuvent se déplacer au travers des obstacles et des autres unités.
+    
+   + Portée attaque : La portée d'attaque est définie par une certaine portée verticale et horizontale, ici :     Horizontale/Verticale
+   
+   + Type : Les classes peuvent être de type humanoide, monstre ou hybride, respectivement représentés ici par 1, 2 et 3
+            Les unités de type 1 infligent plus de dégats à celles de type 2 et réciproquement.
+            Les unités de type 3 infligent plus de dégats à celles de type 1 et 2.
+            
     
     
   - - - 
@@ -75,12 +86,27 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   ## Conception 
   
   + Noyau de jeu  
+  
+   +Génération de la matrice plateau 
+   
+   +Génération des obstacles  
+     +Implémentation des contraintes sur la génération du plateau et des obstacles  
+      +Définition de la taille du plateau en fonction du crédit maximum (création d'unités) disponible;
+      +Génération des obstacles selon au centre du plateau de façon à ne pas entraver le déploiement et le déplacement des unités  
+    
+   +Mises en oeuvres  
+    +Déploiement des unités/ définition de l'ordre de jeu
+     +Contrainte sur le déploiement des unités du deuxième joueur : la matrice affichée au second joueur n'indique pas l'emplacement des unités adverses, celles-ci n'apparaissent qu'a la fin de la constitution des deux équipes. Cependant on vérifie quand même que le second joueur ne déploie pas d'unité sur un emplacement déja occupé.
+     +A chaque choix d'une classe par un joueur 
+    
+    
+     
+    +Déplacement d'une unité
+    +Attaque d'une unité
+   
     
   + SDL  
-   
-  + Mise en réseau  
-   
-  + Idées d'améliorations  
+     
     
   
   
