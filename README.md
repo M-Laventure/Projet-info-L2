@@ -83,7 +83,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   - - - 
   
-  ## Conception (* *Voir rapport pour plus de détails )
+  ## Conception ( *Voir rapport pour plus de détails )
   
   + Noyau de jeu  
   
@@ -92,9 +92,9 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
    + Génération des obstacles    
     
    +Mises en oeuvres   
-    + Déploiement des unités/ définition de l'ordre de jeu
-    + Attaque / Déplacement d'une unité
-    + Fin de partie
+        + Déploiement des unités/ définition de l'ordre de jeu
+        + Attaque / Déplacement d'une unité
+        + Fin de partie
     
   + SDL  
      
