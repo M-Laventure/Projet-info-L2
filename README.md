@@ -71,7 +71,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
     
    + Portée attaque : La portée d'attaque est définie par une certaine portée verticale et horizontale, ici :     Horizontale/Verticale
    
-   + Type : Les classes peuvent être de type humanoide, monstre ou hybride, respectivement représentés ici par 1, 2 et 3
+   + Type : Les classes peuvent être de type humanoide, monstre ou hybride, respectivement représentées ici par 1, 2 et 3
             Les unités de type 1 infligent plus de dégats à celles de type 2 et réciproquement.
             Les unités de type 3 infligent plus de dégats à celles de type 1 et 2.
             
