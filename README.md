@@ -83,27 +83,18 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   - - - 
   
-  ## Conception 
+  ## Conception (* *Voir rapport pour plus de détails )
   
   + Noyau de jeu  
   
-   +Génération de la matrice plateau 
-   
-   +Génération des obstacles  
-     +Implémentation des contraintes sur la génération du plateau et des obstacles  
-      +Définition de la taille du plateau en fonction du crédit maximum (création d'unités) disponible;
-      +Génération des obstacles selon au centre du plateau de façon à ne pas entraver le déploiement et le déplacement des unités  
+   + Génération de la matrice plateau 
     
-   +Mises en oeuvres  
-    +Déploiement des unités/ définition de l'ordre de jeu
-     +Contrainte sur le déploiement des unités du deuxième joueur : la matrice affichée au second joueur n'indique pas l'emplacement des unités adverses, celles-ci n'apparaissent qu'a la fin de la constitution des deux équipes. Cependant on vérifie quand même que le second joueur ne déploie pas d'unité sur un emplacement déja occupé.
-     +A chaque choix d'une classe par un joueur 
+   + Génération des obstacles    
     
-    
-     
-    +Déplacement d'une unité
-    +Attaque d'une unité
-   
+   +Mises en oeuvres   
+    + Déploiement des unités/ définition de l'ordre de jeu
+    + Attaque / Déplacement d'une unité
+    + Fin de partie
     
   + SDL  
      
