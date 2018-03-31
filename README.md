@@ -91,7 +91,8 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
     
    + Génération des obstacles    
     
-   * Mises en oeuvres   
+   * Mises en oeuvres  
+   
         * Déploiement des unités/ définition de l'ordre de jeu
         * Attaque / Déplacement d'une unité
         * Fin de partie
