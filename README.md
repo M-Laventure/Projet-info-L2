@@ -97,9 +97,9 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
            * Attaque / Déplacement d'une unité
            * Fin de partie  
    
-       * Menu de jeu ( dans le terminal)
+   * Menu de jeu ( dans le terminal)
    
-       * Sauvegarde/Chargement 
+   * Sauvegarde/Chargement 
     
   + Interface graphique (SDL) 
      
