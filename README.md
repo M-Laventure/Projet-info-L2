@@ -85,19 +85,23 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   
   ## Conception ( *Voir rapport pour plus de détails )
   
-  + Noyau de jeu  
+  * Noyau de jeu  
   
-   + Génération de la matrice plateau 
+       * Génération de la matrice plateau 
+       
+       * Génération des obstacles    
     
-   + Génération des obstacles    
-    
-   * Mises en oeuvres  
+       * Mises en oeuvres  
    
-        * Déploiement des unités/ définition de l'ordre de jeu
-        * Attaque / Déplacement d'une unité
-        * Fin de partie
+           * Déploiement des unités/ définition de l'ordre de jeu
+           * Attaque / Déplacement d'une unité
+           * Fin de partie  
+   
+       * Menu de jeu ( dans le terminal)
+   
+       * Sauvegarde/Chargement 
     
-  + SDL  
+  + Interface graphique (SDL) 
      
     
   
