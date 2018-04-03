@@ -1,3 +1,4 @@
+\file[
 void  compo_unit(int **Map, int taille_map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
 int verif_credit(int * credit, int credit_unite);
 unite_s * init_tab();
