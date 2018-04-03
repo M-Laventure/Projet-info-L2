@@ -4,8 +4,8 @@
 #include <time.h>
 #include <string.h>
 
-#include "personnages.h"
-#include "fonction_map.h"
+#include "../Include/personnages.h"
+#include "../Include/fonction_map.h"
 
 
 int main (int argc, char ** argv){
@@ -14,7 +14,7 @@ int main (int argc, char ** argv){
 	srand(time(NULL));			/*initialisation du random*/
 	int entered_size=0;
 	int credit =0;
-	int ** TabChemin = NULL;
+
 	int ** MainMap=NULL ; /**pointeur sur notre carte créée dans le tas**/;
 
 	unite_s *tab_ref = init_tab(); /********** Tableau reference unite***********/
@@ -51,7 +51,7 @@ int main (int argc, char ** argv){
 		if(tab_ordrejeu[i].stats.vie !=0){
 			AfficherMap(MainMap,&entered_size);
 			printf("\n Tour : %s n %i du joueur %i  \n ",tab_ordrejeu[i].nom,tab_ordrejeu[i].id_unite,tab_ordrejeu[i].id_joueur);
-			tour_unite(tab_ordrejeu,i,MainMap);
+			tour_unite(tab_ordrejeu,i,MainMap,entered_size);
 		}
 		i++;
 		if (i==20)i=0;
