@@ -12,8 +12,10 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	printf("defense %i\n", tab_ordrejeu[id_unite].stats.def);
 	printf("Saisir l'id de l'unité à attaquer \n");
 	for (int i=0;i<9;i++){
-		if(est_a_portee(tab_ordrejeu, Map, id_unite, i)){
-			printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
+		if(id_unite != i){
+			if(est_a_portee(tab_ordrejeu, Map, id_unite, i)){
+				printf("Attaquer %i \n", tab_ordrejeu[i].id_unite);
+			}
 		}
 	}
 	scanf("%i", &id_cible);
