@@ -6,7 +6,7 @@ void add_tab_joueur(unite_s *tab_joueur,unite_s unite_courante, int nb_unite, in
 void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur, int joueur);
 void ordre_jeu(unite_s *tab_ordrejeu, unite_s *tab_j1,unite_s *tab_j2);
 void place_unite(int **Map,unite_s *tab_ordrejeu );
-void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
+
 
 extern void  compo_unit(int **Map,int taille_map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
 	/* cette fonction compose les deux equipes, joueur1 puis joueur2.*/
@@ -117,23 +117,6 @@ extern void place_unite(int **Map,unite_s *tab_ordrejeu ){
 	while(tab_ordrejeu[i].id_joueur !=0){
 		Map[tab_ordrejeu[i].coord.x][tab_ordrejeu[i].coord.y]=tab_ordrejeu[i].id_unite;
 		i++;
-	}
-}
-
-extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map){
-	int choix ;
-	printf ("Choix: 1 -attaquer, 2 -deplacer,autre -passer\n");
-	scanf("%i",&choix);
-	if(choix == 1){
-		/*attaquer(tab_ordrejeu, id_unite);*/
-	}
-	if(choix == 2){
-		deplacer(tab_ordrejeu, id_unite, Map,taille_map); 
-		printf(" Choix: 1 -attaquer, autre -passer\n");
-		scanf("%i",&choix);
-		if (choix==1){
-			/*attaquer(tab_ordrejeu,id_unite);*/
-		}
 	}
 }
 
