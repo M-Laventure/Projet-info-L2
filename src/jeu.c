@@ -20,7 +20,7 @@ int main (int argc, char ** argv){
 	int entered_size=0;
 	int credit =0;
 
-	int ** MainMap=NULL ; /**pointeur sur notre carte créée dans le tas**/;
+	int ** MainMap=NULL ; /**pointeur sur notre carte crée dans le tas**/;
 
 	unite_s *tab_ref = init_tab(); /********** Tableau reference unite***********/
 	unite_s *tab_j1 = malloc(10*sizeof(unite_s)); 
@@ -33,7 +33,7 @@ int main (int argc, char ** argv){
 	}while(credit>=100 || credit<10);  /*****Entrez nombre d'unités*****/
 	int creditmax = credit;
 	entered_size= unitTosize(&credit); /*****Convertir NOMBRE D'unités EN TAILLE*********/
-	MainMap = Map_Maker1(&entered_size);
+	MainMap = Map_Maker(&entered_size);
 
 	init_obstacle(MainMap, &entered_size);
 	AfficherMap(MainMap,&entered_size);
