@@ -1,9 +1,9 @@
 
 //**Prototype à mettre dans un fichier.h**/
-int** Map_Maker1(int * ); //fonction qui initialise la carte
-void AfficherMap(int **, int * );//fonction qui affiche la carte
-int  unitTosize(int *);//fonction redéfinie la taille de la map
-void init_obstacle(int **, int *);
+int** Map_Maker1(int * size); //fonction qui initialise la carte
+void AfficherMap(int ** Map, int *  size);//fonction qui affiche la carte
+int  unitTosize(int *nombre_units);//fonction redéfinie la taille de la map
+void init_obstacle(int ** tableau, int **taille_map);
 
 void  compo_unit(int **Map, int taille_map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
 int verif_credit(int * credit, int credit_unite);
