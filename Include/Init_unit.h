@@ -36,7 +36,7 @@ extern void coord_unite(int **Map,int taille_map,int nb_unite,unite_s *tabjoueur
 	do{
 	placement=0;
 	printf("Coordonnée x: ");	// demande des coordonnées de placements
-	scanf("%i",&x);
+	scanf("%i",&x); 
 	printf("Coordonnée y: ");
 	scanf("%i",&y);
 	printf("\n");
