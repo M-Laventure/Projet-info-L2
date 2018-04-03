@@ -1,4 +1,3 @@
-\file[
 void  compo_unit(int **Map, int taille_map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
 int verif_credit(int * credit, int credit_unite);
 unite_s * init_tab();
@@ -124,17 +123,17 @@ extern void place_unite(int **Map,unite_s *tab_ordrejeu ){
 extern unite_s * init_tab(){
 	unite_s * tab_unite = NULL;
 	tab_unite = malloc(10*sizeof(unite_s)); //2 structures
-//id_j,id_unite, type, nom,(credit,vie,atq,def,(atq hor,vert),(deplacement)
+//id_j,id_unite,nom,(credit,vie,atq,def,(atq hor,vert),(deplacement),(type,faiblesse,bonus))
 	
-	unite_s witcher  = {0,0, 0, 3 ,"witcher", {40, 10, 4, 40, {3,3} ,3 }};
-	unite_s mage     = {0,0, 1, 1 ,"mage",    {15, 5,  6, 20, {3,3} ,2 }};
-	unite_s scoiatel = {0,0, 2, 1 ,"scoiatel",{10, 6,  3, 20, {3,2} ,3 }};
-	unite_s nains    = {0,0, 3, 1 ,"nain",    {10, 8,  4, 30, {2,2} ,3 }};
-	unite_s spectre  = {0,0, 4, 2 ,"spectre", {10, 6,  2, 40, {2,3} ,3 }};
-	unite_s wyvern   = {0,0, 5, 2 ,"wyvern",  {20, 10, 3, 40, {3,3} ,3 }};
-	unite_s leshen   = {0,0, 6, 2 ,"leshen",  {15, 8,  4, 40, {2,2} ,2 }};
-	unite_s cyclope  = {0,0, 7, 2 ,"cyclope", {15, 10, 4, 30, {2,2} ,2 }};
-	unite_s doppler  = {0,0, 8, 3 ,"doppler", {10, 5,  2, 30, {2,3} ,4 }};
+	unite_s witcher  = {0,0, 0, 3 ,"witcher", {40, 10, 4, 40, {3,1} ,3 }};
+	unite_s mage     = {0,0, 1, 1 ,"mage",    {15, 5,  6, 20, {3,1} ,2 }};
+	unite_s scoiatel = {0,0, 2, 1 ,"scoiatel",{10, 6,  3, 20, {3,1} ,3 }};
+	unite_s nains    = {0,0, 3, 1 ,"nain",    {10, 8,  3, 30, {2,1} ,2 }};
+	unite_s spectre  = {0,0, 4, 2 ,"spectre", {10, 6,  2, 40, {3,1} ,3 }};
+	unite_s wyvern   = {0,0, 5, 2 ,"wyvern",  {20, 10, 4, 40, {3,1} ,3 }};
+	unite_s leshen   = {0,0, 6, 2 ,"leshen",  {15, 8,  4, 40, {3,1} ,2 }};
+	unite_s cyclope  = {0,0, 7, 2 ,"cyclope", {15, 10, 4, 30, {2,1} ,2 }};
+	unite_s doppler  = {0,0, 8, 3 ,"doppler", {10, 5,  2, 20, {2,1} ,4 }};
 	tab_unite[0] = witcher ;
 	tab_unite[1] = mage ;
 	tab_unite[2] = scoiatel ;
