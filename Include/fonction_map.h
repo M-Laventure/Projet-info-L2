@@ -4,8 +4,7 @@ int** Map_Maker1(int * ); //fonction qui initialise la carte
 void AfficherMap(int **, int * );//fonction qui affiche la carte
 int  unitTosize(int *);//fonction redéfinie la taille de la map
 void init_obstacle(int **, int *);
-void placement_auto1(int **, int *, int * , char );
-int placement_manuel(int **, int *, int, int);
+
 void  compo_unit(int **Map, int taille_map, int *credit, int joueur,unite_s *tab,unite_s *tabjoueur);
 int verif_credit(int * credit, int credit_unite);
 unite_s * init_tab();
