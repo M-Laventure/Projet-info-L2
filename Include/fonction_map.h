@@ -139,7 +139,7 @@ extern void init_obstacle(int **tableau, int *taille_map){
 
 extern void  compo_unit(int **Map,int taille_map, int *credit, int joueur,unite_s *tab_ref,unite_s *tabjoueur){
 	/* cette fonction compose les deux equipes, joueur1 puis joueur2.*/
-	int num_unite;
+
 	int nb_unite = 0;
 	unite_s unite_courante;
 	printf("\n composition de l'équipe du joueur %i : %i credits total \n \n", joueur,(*credit));
@@ -508,6 +508,9 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 			return 0;
 		}
 	}
+	else{
+		return 0;
+	}
 }
 
 
@@ -558,6 +561,9 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 		}
 		return 1 ;
 	}
+	else{
+		return 0;
+	}
 }
 
 
@@ -597,7 +603,7 @@ extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 	if (tab_ordrejeu[id_unite].type==2 && tab_ordrejeu[id_cible].type==1){
 		return 1;
 	}
-	if (tab_ordrejeu[id_unite].type=0){
+	if (tab_ordrejeu[id_unite].type==0){
 		return 1;
 	}
 	else{
