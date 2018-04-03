@@ -5,7 +5,11 @@
 #include <string.h>
 
 #include "../Include/personnages.h"
-#include "../Include/fonction_map.h"
+#include "../Include/init_unit.h"
+#include "../Include/meo_attaque.h"
+#include "../Include/meo_deplacement.h"
+#include "../Include/plateau.h"
+#include "../Include/fin_partie.h"
 
 
 int main (int argc, char ** argv){
