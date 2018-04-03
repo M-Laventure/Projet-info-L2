@@ -1,12 +1,10 @@
-
-/* Mise en oeuvre deplacement */
 int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu);
 int** Convertit_map(int taille_matrice,int** tab_chemin,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee);
 int unite_aerien(unite_s* tab_ordrejeu, int id_unite);
 int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee);
 int est_chemin (int **tab_chemin,int taille_matrice,int x_arrivee,int y_arrivee);
 void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
-
+int**Map_Maker(int *taille_matrice);
 
 extern int** Convertit_map(int taille_matrice,int ** tab_chemin,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
 /* Cete fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin*/
@@ -99,7 +97,6 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille
 	printf("\n");
 	}
 	while(!coord_correct(taille_map,Map,id_unite,tab_ordrejeu,x,y));
-	/*while((!verif_range_deplacement(x, y, id_unite, tab_ordrejeu))|| (Map[x][y]!=0));*/
 	printf("changement");
 	Map[tab_ordrejeu[id_unite].coord.x][tab_ordrejeu[id_unite].coord.y]=0;
 	tab_ordrejeu[id_unite].coord.x=x;
@@ -110,13 +107,6 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille
 	
 }
 	
-	/*Map[tab_ordrejeu[id_unite-1].coord.x][tab_ordrejeu[id_unite-1].coord.y]=0;
-	
-	tab_ordrejeu[id_unite-1].coord.x=x;
-	tab_ordrejeu[id_unite-1].coord.y=y;
-	printf("%i",id_unite);
-	Map[x][y]=id_unite;
-}*/
 	
 extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee){
 	if (verif_range_deplacement(x_arrivee, y_arrivee, id_unite, tab_ordrejeu)){
@@ -129,7 +119,7 @@ extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordr
 			else{	
 			
 				int ** map_convertie=NULL ;
-				map_convertie = Map_Maker1(&taille_map);
+				map_convertie = Map_Maker(&taille_map);
 				map_convertie = Convertit_map(taille_map,map_convertie,map,tab_ordrejeu[id_unite].coord.x,tab_ordrejeu[id_unite].coord.y,x_arrivee,y_arrivee);
 				
 				int chemin_possible = 0;
@@ -148,12 +138,8 @@ extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordr
 	
 		
 	return 0;
-}				
-	
-	 																													/* Vérifie que les coordonnées saisies par le 																															joueur  permettent le déplacement : on ne peut  																										          	saisir des coordonnées où se trouve un obstacle  																											            ou une unité*/ 
-	 																													
+}																													
 																												
-
 
 
 // Renvoie faux si les coordonnées saisies désignent un obstacle ou une unité	
