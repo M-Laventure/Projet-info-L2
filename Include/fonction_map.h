@@ -321,22 +321,22 @@ Notre objectif étant de ne transformer que les cases adjacentes en un appel de 
 			
 				if (tab_chemin[i][j]==0){
 					if(j>0){
-						if ((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==2)){ //case dessus
+						if ((tab_chemin[i][j-1]==1) || (tab_chemin[i][j-1]==3)){ //case dessus
 							tab_chemin[i][j]=10;}
 											
 					}
 					if(j<taille_matrice){
-						if ((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==2)){//case dessous
+						if ((tab_chemin[i][j+1]==1) || (tab_chemin[i][j+1]==3)){//case dessous
 							tab_chemin[i][j]=10;}
 					}
 					if (i>0){
-						if((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==2)){ //case gauche
+						if((tab_chemin[i-1][j]==1) || (tab_chemin[i-1][j]==3)){ //case gauche
 							tab_chemin[i][j]=10;}
 						
 					}
 	
 					if (i<taille_matrice-1){
-						if((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==2)){ //case droite
+						if((tab_chemin[i+1][j]==1) || (tab_chemin[i+1][j]==3)){ //case droite
 							tab_chemin[i][j]=10;}
 							
 					}
