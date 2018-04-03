@@ -62,7 +62,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   | Spectre : 4       |     10        |       6       |   2     |   40    |         3             |      2/3       |   2  | 
   | Wyvern  : 5       |     20        |       10      |   3     |   40    |         3             |      3/3       |   2  | 
   | Leshen  : 6       |     15        |       8       |   4     |   40    |         2             |      2/2       |   2  |
-  | Cyclope : 7       |     15        |       10      |   4     |   30    |         2             |      2/2       |   2  |  
+  | Cyclope : 7       |     15        |       10      |   4     |   30    |         2             |      2/2       |   2  | 
   | Doppler : 8       |     10        |       5       |   2     |   30    |         4             |      2/3       |   3  | 
   
   5. Particularités
