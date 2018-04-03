@@ -23,7 +23,7 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 	if(block(tab_ordrejeu, id_cible)){
 		printf("l'attaque a été bloqué \n");
 	}
-	if(!block(tab_ordrejeu, id_cible)){
+	else{
 		printf("l'attaque a atteint sa cible \n");
 		calcul_dmg(tab_ordrejeu, id_unite, id_cible);
 	}
