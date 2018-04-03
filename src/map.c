@@ -10,6 +10,7 @@
 #include "../Include/meo_deplacement.h"
 #include "../Include/plateau.h"
 #include "../Include/fin_partie.h"
+#include "../Include/tour.h"
 
 
 int main (int argc, char ** argv){
