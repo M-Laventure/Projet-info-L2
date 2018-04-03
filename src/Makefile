@@ -1,13 +1,13 @@
 CC=gcc
 CFLAGS=-g -Wall -Werror
-EXEC=map
+EXEC=jeu
 LDFLAGS=
 
-map: map.o
-	$(CC) -o $@ $^ $(LDLAGS) # $@ désigne le nom de la cible ici map et $^ la liste des dépendances ici map.o
+jeu: jeu.o
+	$(CC) -o $@ $^ $(LDLAGS) # $@ désigne le nom de la cible ici jeu et $^ la liste des dépendances ici jeu.o
 
-map.o: map.c
-	$(CC) -o $@ -c $< $(CFLAGS) # $< désigne la première dépendances ici map.c
+jeu.o: jeu.c
+	$(CC) -o $@ -c $< $(CFLAGS) # $< désigne la première dépendances ici jeu.c
 
 all: $(EXEC)
 
@@ -16,3 +16,4 @@ clean:
 
 mrproper: clean
 	rm -rf $(EXEC)
+
