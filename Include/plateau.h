@@ -1,9 +1,38 @@
 
 /* Génération matrice plateau/obstacles */
-int** Map_Maker1(int * ); //fonction qui initialise la carte
-void AfficherMap(int **, int * );//fonction qui affiche la carte
-int  unitTosize(int *);//fonction redéfinie la taille de la map
-void init_obstacle(int **, int *);
+int** Map_Maker(int * size ); //fonction qui initialise la carte
+void AfficherMap(int **Map, int * size);//fonction qui affiche la carte
+int  unitTosize(int *nombre_units);//fonction redéfinie la taille de la map
+void init_obstacle(int **tableau, int *taille_map);
+
+extern int** Map_Maker(int * size) { //reçoit un pointeur sur size pour ne rien perdre
+
+int **Map;
+int i,j;
+int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+Map= malloc(taille_matrice*sizeof(int*));
+/*on alloue une valeur à la matrice**/
+	if (Map ==NULL){
+	printf("Allocation impossible\n");
+	exit(EXIT_FAILURE);
+
+	}
+ 	for (i=0;i<taille_matrice;i++)
+	{
+		Map[i] = malloc(taille_matrice*sizeof(int));
+		for(j=0;j<taille_matrice;j++)
+		{
+			
+			Map[i][j]=0;  /*valeur mise à zéro*/
+			
+		}
+
+
+   	
+	}
+	return  Map;
+
+}
 
 
 extern void AfficherMap(int **Map, int * size){
