@@ -19,7 +19,7 @@ extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
 		}
 	}
 	scanf("%i", &id_cible);
-	printf("defense cible: %i\n", tab_ordrejeu[id_cible].stats.def);
+	printf("vie et def cible: %i\n", tab_ordrejeu[id_cible].stats.vie,tab_ordrejeu[id_cible].stats.def);
 	if(block(tab_ordrejeu, id_cible)){
 		printf("l'attaque a été bloqué \n");
 	}
