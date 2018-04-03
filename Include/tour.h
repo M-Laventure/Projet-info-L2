@@ -1,4 +1,6 @@
 void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
+void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
+void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map);
 
 
 extern void tour_unite(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map){
