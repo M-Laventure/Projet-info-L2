@@ -151,7 +151,7 @@ extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordr
 
 
 extern int unite_aerien(unite_s* tab_ordrejeu, int id_unite){
-
+/* cette fonction détermine si l'unite selectionné est de type volant ou non*/
 	if(tab_ordrejeu[id_unite-1].id_classe==5||tab_ordrejeu[id_unite-1].id_classe==4)  		
 		return 1;																									    						
 	else{
@@ -160,6 +160,7 @@ extern int unite_aerien(unite_s* tab_ordrejeu, int id_unite){
 }
 
 extern int verif_range_deplacement(int x, int y, int id_unite, unite_s* tab_ordrejeu){ // prends x arrive, y arrivee
+/* cette fonction vérifie que la case ciblée et les points de déplacements de l'unité coîncident*/
 	if (abs(tab_ordrejeu[id_unite].coord.x-x)+abs(tab_ordrejeu[id_unite].coord.y-y) <= tab_ordrejeu[id_unite].stats.deplacement){
 			return 1;
 		}
