@@ -6,7 +6,7 @@ extern int victoire(unite_s *tab_ordrejeu){
 	int i =0;
 	int vict_j1= 1 ;
 	int vict_j2= 1 ;
-	while(tab_ordrejeu[i].id_joueur !=0){
+	while(tab_ordrejeu[i].id_joueur !=0){ // on cherche si chaque joueur a au moins une unité vivante
 		if (tab_ordrejeu[i].id_joueur==1 && tab_ordrejeu[i].stats.vie !=0)
 			vict_j2 =0;
 		if (tab_ordrejeu[i].id_joueur==2 && tab_ordrejeu[i].stats.vie !=0)
