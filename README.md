@@ -78,6 +78,13 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
   - - - 
   ## Instructions d'utilsation 
   
+  1. Télécharger l'archive du jeu puis l'extraire 
+  
+  2. Ouvrir le terminal depuis le répertoire src
+  
+  3. Exécuter la commande make 
+  
+  4. Exécuter ./jeu ou lancer jeu.out 
   
   - - - 
   
