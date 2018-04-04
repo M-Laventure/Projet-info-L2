@@ -9,25 +9,27 @@ int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible);
 
 
 extern void attaquer(unite_s*tab_ordrejeu, int id_unite, int **Map){
-
+/* fonction principale de la mise en oeuvre de l'attaque*/
+	
 	int id_cible;
-	printf("entrez id_cible : ");
+	printf("entrez id_cible : "); // on demande l'id de la cible
 	scanf("%i", &id_cible);
-		if(est_a_portee(tab_ordrejeu, Map, id_unite, id_cible-1)){
-			if(!block(tab_ordrejeu, id_cible)){
-				calcul_dmg(tab_ordrejeu, id_unite, id_cible-1);
+		if(est_a_portee(tab_ordrejeu, Map, id_unite, id_cible-1)){ // on vérifie si la portée de l'unité permet l'attaque sur la cible
+			if(!block(tab_ordrejeu, id_cible)){ //determine si l'attaque est bloquée ou non
+				calcul_dmg(tab_ordrejeu, id_unite, id_cible-1); //non bloquée, donc on autorise l'attaque
 				printf("l'attaque est passée");
 			}
-			else{
+			else{ 
 				printf("\n attaque bloquée");
 			}
 		}
 		else{
-			printf("cible incorrect ou trop éloignée \n");
+			printf("cible incorrecte ou trop éloignée \n");
 		}
 }
 
 int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
+	/* cette fonction determine si la portée de l'unité permet l'attaque de la cible*/
 		if(tab_ordrejeu[id_unite].coord.x == tab_ordrejeu[id_cible].coord.x ){
 						if(abs(tab_ordrejeu[id_unite].coord.y-tab_ordrejeu[id_cible].coord.y)<=tab_ordrejeu[id_unite].stats.portee_attaque.vert){
 				if(tab_ordrejeu[id_unite].id_classe==4 || tab_ordrejeu[id_unite].id_classe==5){
@@ -64,6 +66,7 @@ int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 
 
 int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_unite){
+	/*cette fonction dertermine si un obstacle est sur la trajectoire*/
 	if(tab_ordrejeu[id_unite].coord.y < tab_ordrejeu[id_cible].coord.y){
 		int ytemp = tab_ordrejeu[id_unite].coord.y;
 		while(ytemp!=tab_ordrejeu[id_cible].coord.y){
@@ -120,6 +123,7 @@ int trajectoire_bloque(int **Map,unite_s *tab_ordrejeu, int id_cible, int id_uni
 /*------------Mise en oeuvre calcul_dmg---------------------*/
 
 extern int block(unite_s *tab_ordrejeu, int id_cible){
+	/* cette fonction détermine si l'attaque est bloquée*/
 	int defense_cible=tab_ordrejeu[id_cible].stats.def;
 	int blocage;
 	srand(time(NULL));
