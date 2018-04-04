@@ -40,7 +40,7 @@ extern void AfficherMap(int **Map, int * size){
 				printf(" *");
 			}else printf("  ");*/
 int i, j;
-int taille_matrice = (*size); //je stocke la taille, pour eviter de mettre des notations *
+int taille_matrice = (*size); //on stocke la taille, pour eviter de mettre des notations *
 	
 for (i=0;i<taille_matrice;i++)
 	{
@@ -83,7 +83,7 @@ extern void init_obstacle(int **tableau, int *taille_map){
 	int coord_x=0;
 	int coord_y=0;
 	int zone_j = (*taille_map)/4; // pas d'obstacle sur les extrémités de la carte
-	printf("%i \n",zone_j);
+
 	
  // initialisation de rand
 
