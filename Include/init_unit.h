@@ -125,7 +125,7 @@ extern unite_s * init_tab(){
 	tab_unite = malloc(10*sizeof(unite_s)); //2 structures
 //id_j,id_unite,nom,(credit,vie,atq,def,(atq hor,vert),(deplacement),(type,faiblesse,bonus))
 	
-	unite_s witcher  = {0,0, 0, 3 ,"witcher", {40, 10, 4, 40, {3,1} ,3 }};
+	unite_s witcher  = {0,0, 0, 3 ,"witcher", {20, 10, 4, 40, {3,1} ,3 }};
 	unite_s mage     = {0,0, 1, 1 ,"mage",    {15, 5,  6, 20, {3,1} ,2 }};
 	unite_s scoiatel = {0,0, 2, 1 ,"scoiatel",{10, 6,  3, 20, {3,1} ,3 }};
 	unite_s nains    = {0,0, 3, 1 ,"nain",    {10, 8,  3, 30, {2,1} ,2 }};
