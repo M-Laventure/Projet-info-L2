@@ -26,38 +26,7 @@ extern void attaquer(unite_s*tab_ordrejeu, int id_unite, int **Map){
 			printf("cible incorrect ou trop éloignée \n");
 		}
 }
-/*
-extern void attaquer(unite_s *tab_ordrejeu, int id_unite, int **Map){
-	int id_cible;
-	printf("defense %i\n", tab_ordrejeu[id_unite].stats.def);
-	printf("Saisir l'id de l'unité à attaquer \n");
-	for (int i=0;i<9;i++){
-		int unite_presente = 0;
-		if(id_unite != i){
-			if(tab_ordrejeu[i].stats.vie>0){
-				if(est_a_portee(tab_ordrejeu, Map, id_unite, i)){
-					unite_presente = 1;
-					printf("Attaquer %i %i\n", tab_ordrejeu[i].id_unite,tab_ordrejeu[i].stats.vie);
-				}
-			}
-		}
-	}
-	if (unite_presente){
-		scanf("%i", &id_cible);
-		printf("cible : %i vie    def %i\n", tab_ordrejeu[id_cible].stats.vie,tab_ordrejeu[id_cible].stats.def);
-		if(block(tab_ordrejeu, id_cible)){
-			printf("l'attaque a été bloqué \n");
-		}
-		else{
-			printf("l'attaque a atteint sa cible \n");
-			
-		}
-	}
-	else{
-		printf("Il n'y a rien a attaquer");
-	}
-}
-*/
+
 int est_a_portee(unite_s *tab_ordrejeu,int **Map, int id_unite, int id_cible){
 		if(tab_ordrejeu[id_unite].coord.x == tab_ordrejeu[id_cible].coord.x ){
 						if(abs(tab_ordrejeu[id_unite].coord.y-tab_ordrejeu[id_cible].coord.y)<=tab_ordrejeu[id_unite].stats.portee_attaque.vert){
