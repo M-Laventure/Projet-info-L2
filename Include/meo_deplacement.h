@@ -7,7 +7,8 @@ void deplacer(unite_s *tab_ordrejeu, int id_unite, int **Map,int taille_map);
 int**Map_Maker(int *taille_matrice);
 
 extern int** Convertit_map(int taille_matrice,int ** tab_chemin,int **map, int x_unite, int y_unite,int x_arrivee, int y_arrivee) { //reçoit un pointeur sur size pour ne rien perdre
-/* Cete fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin*/
+/* Cette fonction convertit le plateau en un tableau simplifié ,destiné à la recherche de chemin
+Les cases vides restent à 0, le reste passe à -1, excepté la case de départ et d'arrviée qui valent respectivement 3 et 2*/
 
 int i,j;
 
@@ -113,16 +114,16 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille
 extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee){
 	/* cette fonction vérifie si la case demandée est bien vide, et possible d'accès pour l'unité du joueur*/
 	
-	if (verif_range_deplacement(x_arrivee, y_arrivee, id_unite, tab_ordrejeu)){
+	if (verif_range_deplacement(x_arrivee, y_arrivee, id_unite, tab_ordrejeu)){ //verifie si la case n'est pas trop loin
 		
-		if(map[x_arrivee][y_arrivee]==0){
+		if(map[x_arrivee][y_arrivee]==0){ // si elle est disponible
 			
-			if (unite_aerien(tab_ordrejeu,id_unite)){
+			if (unite_aerien(tab_ordrejeu,id_unite)){ // si l'unite est volante, alors déplacement autorisé
 				return 1;
 			}
-			else{	
+			else{	// sinon, on cherche si un chemin est possible
 			
-				int ** map_convertie=NULL ;
+				int ** map_convertie=NULL ; // plateau destiné à la recherche de chemin
 				map_convertie = Map_Maker(&taille_map);
 				map_convertie = Convertit_map(taille_map,map_convertie,map,tab_ordrejeu[id_unite].coord.x,tab_ordrejeu[id_unite].coord.y,x_arrivee,y_arrivee);
 				
