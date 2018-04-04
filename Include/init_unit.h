@@ -121,6 +121,7 @@ extern void place_unite(int **Map,unite_s *tab_ordrejeu ){
 }
 
 extern unite_s * init_tab(){
+/* cette fonction créer et remplis le tableau (de structures) de référence tab_ref*/
 	unite_s * tab_unite = NULL;
 	tab_unite = malloc(10*sizeof(unite_s)); //2 structures
 //id_j,id_unite,nom,(credit,vie,atq,def,(atq hor,vert),(deplacement),(type,faiblesse,bonus))
