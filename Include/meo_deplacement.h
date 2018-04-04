@@ -88,6 +88,8 @@ Notre objectif étant de ne transformer que les cases adjacentes en un appel de 
 
 
 extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille_map){
+	/*cette fonction demande les coordonnées de la case ciblé, si toutes les conditions sont vérifiés, 
+		l'unité du joueur se déplace à cette case*/
 	int x,y;
 	do{
 	printf("Coordonnée x: ");
@@ -109,6 +111,8 @@ extern void deplacer(unite_s *tab_ordrejeu, int id_unite, int ** Map, int taille
 	
 	
 extern int coord_correct(int taille_map,int **map,int id_unite,unite_s *tab_ordrejeu, int x_arrivee, int y_arrivee){
+	/* cette fonction vérifie si la case demandée est bien vide, et possible d'accès pour l'unité du joueur*/
+	
 	if (verif_range_deplacement(x_arrivee, y_arrivee, id_unite, tab_ordrejeu)){
 		
 		if(map[x_arrivee][y_arrivee]==0){
