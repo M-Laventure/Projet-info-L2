@@ -16,9 +16,7 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
  
  **III/[Conception](#Etapes-de-conception)**  
  
- **V/[Documentation](#Documentation)**  
- 
- **VI/[Contributeurs](#Contributeurs)**  
+ **IV/[Contributeurs](#Contributeurs)**  
 
  
  - - -
@@ -97,26 +95,19 @@ Le but du jeu est d'utiliser à bon escient les spécificités de ses unités af
            * Attaque / Déplacement d'une unité
            * Fin de partie  
    
-  * Menu de jeu ( dans le terminal)
    
-  * Sauvegarde/Chargement 
+  (* Sauvegarde/Chargement )
     
-  + Interface graphique (SDL) 
+  (+ Interface graphique (SDL)) 
      
     
   
-  
-  - - - 
-  
-  ## Documentation 
-  
-  - - -    
   
   
   ## Contributeurs 
   
   + Aurelien Dad
-  + Ossan Kassegne
+  + (Ossan Kassegne)
   + Marin Laventure
   
   
