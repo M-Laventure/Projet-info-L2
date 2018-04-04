@@ -178,7 +178,7 @@ extern void calcul_dmg(unite_s *tab_ordrejeu, int id_unite, int id_cible){
 }
 
 extern int est_vulnerable(unite_s *tab_ordrejeu, int id_unite, int id_cible){
-	if ((tab_ordrejeu[id_unite].type + tab_ordrejeu[id_cible].type)==3)||(tab_ordrejeu[id_unite] ==3){
+	if ((tab_ordrejeu[id_unite].type + tab_ordrejeu[id_cible].type)==3)||(tab_ordrejeu[id_unite] ==3)){
 		return 1;
 	}
 	else{
